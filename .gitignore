@@ -1,32 +1,19 @@
-# Prerequisites
-*.d
+#   === Постоянные пункты ===
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+#Каталоги
+**/build
 
-# Precompiled Headers
-*.gch
-*.pch
+#Файлы
+**/CMakeLists.txt.autosave
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+#Расширения и прочее
+*.txt.user
 
-# Fortran module files
-*.mod
-*.smod
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+#   === Временные пункты ===
 
-# Executables
-*.exe
-*.out
-*.app
+#Каталоги
+
+#Файлы
+
+#Расширения и прочее
