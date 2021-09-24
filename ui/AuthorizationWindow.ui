@@ -28,6 +28,11 @@
   <property name="windowTitle">
    <string>IESAA | Авторизация</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: #f5f5f5;
+}</string>
+  </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
   </property>

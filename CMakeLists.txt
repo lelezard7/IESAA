@@ -40,4 +40,4 @@ target_include_directories(IESAA PRIVATE src/windows)
 
 target_link_libraries(IESAA PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-#qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+#qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ../../${TS_FILES})

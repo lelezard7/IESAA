@@ -2,5 +2,19 @@
     <qresource prefix="/icons">
         <file alias="ClosedEye">icons/ClosedEye.svg</file>
         <file alias="Eye">icons/Eye.svg</file>
+        <file alias="Calendar">icons/Calendar.svg</file>
+        <file alias="Clock">icons/Clock.svg</file>
+        <file alias="Plus">icons/Plus.svg</file>
+        <file alias="CalendarAndClock">icons/CalendarAndClock.svg</file>
+        <file alias="Folder">icons/Folder.svg</file>
+        <file alias="NewFile">icons/NewFile.svg</file>
+        <file alias="Save">icons/Save.svg</file>
+        <file alias="Server">icons/Server.svg</file>
+        <file alias="BarGraph">icons/BarGraph.svg</file>
+        <file alias="Printer">icons/Printer.svg</file>
+        <file alias="Book">icons/Book.svg</file>
+        <file alias="Team">icons/Team.svg</file>
+        <file alias="Settings">icons/Settings.svg</file>
+        <file alias="Exit">icons/Exit.svg</file>
     </qresource>
 </RCC>

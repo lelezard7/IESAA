@@ -58,6 +58,8 @@ void
 AuthorizationWindow::
 on_pushButton_Apply_clicked()
 {
+    //   === Для демонстрации клиенту ===
+
     if (ui_->lineEdit_Login->text() == "") {
         sendErrMessage("Введите логин!");
         return;
