@@ -3,9 +3,16 @@
 #include <qalgorithms.h>
 #include <algorithm>
 
+#include "SettingsWindow/SettingsWindow.h"
+#include "LogsWindow/LogsWindow.h"
+#include "AboutIESAAWindow/AboutIESAAWindow.h"
+#include "ClientCreationWindow/ClientCreationWindow.h"
+#include "GroupManagementWindow/GroupManagementWindow.h"
+#include "StatisticsWindow/StatisticsWindow.h"
+
 
 IESAAWindow::
-IESAAWindow(QWidget *parent)
+IESAAWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui_(new Ui::IESAAWindow)
 {
@@ -48,10 +55,84 @@ IESAAWindow(QWidget *parent)
     content << "4" << "15604376" << "Грунт" << "Грунт универсальный «Просто»" << "222" << "44" << ""
             << "" << "" << "19.07" << "";
     std::for_each(content.begin(), content.end(), fillTableRow);
+
+
+//    QFont font;
+//    font.setBold(true);
+//    ui_->mainTable->horizontalHeaderItem(1)->setFont(font);
+
+//    font.setFamily("Comic Sans MS");
+
+//    ui_->mainTable->horizontalHeaderItem(2)->setFont(font);
 }
 
 IESAAWindow::
 ~IESAAWindow()
 {
     delete ui_;
+}
+
+void
+IESAAWindow::
+on_action_Settings_triggered()
+{
+    SettingsWindow settingsWindow(this);
+    settingsWindow.exec();
+}
+
+void
+IESAAWindow::
+on_action_Log_triggered()
+{
+    LogsWindow logsWindow(this);
+    logsWindow.exec();
+}
+
+void
+IESAAWindow::
+on_action_AboutIESAA_triggered()
+{
+    AboutIESAAWindow aboutIESAAWindow(this);
+    aboutIESAAWindow.exec();
+}
+
+void
+IESAAWindow::
+on_action_NewClient_triggered()
+{
+    ClientCreationWindow clientCreationWindow(this);
+    clientCreationWindow.exec();
+}
+
+void
+IESAAWindow::
+on_action_NewGroup_triggered()
+{
+    ClientCreationWindow clientCreationWindow(this);
+    clientCreationWindow.exec();
+}
+
+void
+IESAAWindow::
+on_action_GroupManagement_triggered()
+{
+    GroupManagementWindow groupManagementWindow(this);
+    groupManagementWindow.exec();
+}
+
+void
+IESAAWindow::
+on_action_Staff_triggered()
+{
+    staffWindow_ = new StaffWindow(this);
+    staffWindow_->setWindowFlag(Qt::Window, true);
+    staffWindow_->show();
+}
+
+void
+IESAAWindow::
+on_action_Statistics_triggered()
+{
+    StatisticsWindow statisticsWindow(this);
+    statisticsWindow.exec();
 }

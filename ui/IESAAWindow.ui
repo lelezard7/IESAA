@@ -22,11 +22,11 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>5</number>
-    </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
      <number>0</number>
     </property>
     <property name="rightMargin">
@@ -36,7 +36,13 @@
      <number>0</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="spacing">
+       <number>2</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
       <item>
        <spacer name="horizontalSpacer_2">
         <property name="orientation">
@@ -47,24 +53,80 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>5</width>
+          <width>13</width>
           <height>20</height>
          </size>
         </property>
        </spacer>
       </item>
       <item>
-       <widget class="QTableWidget" name="mainTable">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="alternatingRowColors">
-         <bool>true</bool>
-        </property>
-        <attribute name="verticalHeaderDefaultSectionSize">
-         <number>25</number>
-        </attribute>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QDateEdit" name="dateEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+            <property name="date">
+             <date>
+              <year>2021</year>
+              <month>9</month>
+              <day>27</day>
+             </date>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox"/>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="mainTable">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="verticalHeaderDefaultSectionSize">
+           <number>25</number>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <spacer name="horizontalSpacer">
@@ -76,7 +138,7 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>5</width>
+          <width>13</width>
           <height>20</height>
          </size>
         </property>
@@ -124,7 +186,7 @@ padding: 2px;</string>
    <property name="styleSheet">
     <string notr="true">QMenuBar {
     background-color: #293133;
-    color: #ffffff;
+    color: #f5f5f5;
     border-bottom: 1px solid #293133;
 }
 
@@ -136,8 +198,8 @@ QMenuBar::item:selected {
    <widget class="QMenu" name="menu_File">
     <property name="styleSheet">
      <string notr="true">QMenu {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f5f5f5, stop:0.115 #f5f5f5, stop:0.116 #293133,  stop:1 #293133);
-    color: #ffffff;
+    background-color: #293133;
+    color: #f5f5f5;
     border-bottom: 1px solid #293133;
 }
 
@@ -155,10 +217,7 @@ QMenu::item:selected {
     <addaction name="action_OpenFile"/>
     <addaction name="action_CloseFile"/>
     <addaction name="separator"/>
-    <addaction name="action_Import"/>
-    <addaction name="action_export"/>
     <addaction name="action_exportToDatabase"/>
-    <addaction name="separator"/>
     <addaction name="action_Print"/>
     <addaction name="separator"/>
     <addaction name="action_ChangeUser"/>
@@ -168,7 +227,7 @@ QMenu::item:selected {
     <property name="styleSheet">
      <string notr="true">QMenu {
     background-color: #293133;
-    color: #ffffff;
+    color: #f5f5f5;
     border-bottom: 1px solid #293133;
 }
 
@@ -186,8 +245,8 @@ QMenu::item:selected {
    <widget class="QMenu" name="menu_Administration">
     <property name="styleSheet">
      <string notr="true">QMenu {
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f5f5f5, stop:0.17 #f5f5f5, stop:0.171 #293133,  stop:1 #293133);
-    color: #ffffff;
+    background-color: #293133;
+    color: #f5f5f5;
     border-bottom: 1px solid #293133;
 }
 
@@ -202,13 +261,18 @@ QMenu::item:selected {
     <addaction name="action_Log"/>
     <addaction name="action_Staff"/>
     <addaction name="action_Statistics"/>
+    <addaction name="separator"/>
+    <addaction name="action_NewClient"/>
+    <addaction name="action_NewGroup"/>
+    <addaction name="action_GroupManagement"/>
+    <addaction name="separator"/>
     <addaction name="action_Settings"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
     <property name="styleSheet">
      <string notr="true">QMenu {
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f5f5f5, stop:0.115 #f5f5f5, stop:0.116 #293133,  stop:1 #293133);
-    color: #ffffff;
+    background-color: #293133;
+    color: #f5f5f5;
     border-bottom: 1px solid #293133;
 }
 
@@ -218,13 +282,14 @@ QMenu::item:selected {
 }</string>
     </property>
     <property name="title">
-     <string>Редактировать</string>
+     <string>Правка</string>
     </property>
-    <addaction name="action_NewRow"/>
+    <addaction name="action_Undo"/>
+    <addaction name="action_Redo"/>
     <addaction name="separator"/>
-    <addaction name="action_SelectDateTime"/>
-    <addaction name="action_SelectDate"/>
-    <addaction name="action_SelectTime"/>
+    <addaction name="action_Cut"/>
+    <addaction name="action_Copy"/>
+    <addaction name="action_Paste"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
@@ -234,6 +299,12 @@ QMenu::item:selected {
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolBar {
+    background-color: #293133;
+    border-color: #293133;
+}</string>
    </property>
    <property name="iconSize">
     <size>
@@ -247,25 +318,25 @@ QMenu::item:selected {
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_NewRow"/>
-   <addaction name="separator"/>
-   <addaction name="action_SelectDateTime"/>
-   <addaction name="action_SelectDate"/>
-   <addaction name="action_SelectTime"/>
+   <addaction name="action_NewClient"/>
+   <addaction name="action_NewGroup"/>
   </widget>
   <action name="action_Log">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Book</normaloff>:/icons/Book</iconset>
+     <normaloff>:/icons/white/Book</normaloff>:/icons/white/Book</iconset>
    </property>
    <property name="text">
     <string>Журнал</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
   <action name="action_Settings">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Settings</normaloff>:/icons/Settings</iconset>
+     <normaloff>:/icons/white/Settings</normaloff>:/icons/white/Settings</iconset>
    </property>
    <property name="text">
     <string>Настройки</string>
@@ -274,7 +345,7 @@ QMenu::item:selected {
   <action name="action_Staff">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Team</normaloff>:/icons/Team</iconset>
+     <normaloff>:/icons/white/Team</normaloff>:/icons/white/Team</iconset>
    </property>
    <property name="text">
     <string>Персонал</string>
@@ -293,19 +364,25 @@ QMenu::item:selected {
   <action name="action_SaveFile">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Save</normaloff>:/icons/Save</iconset>
+     <normaloff>:/icons/white/Save</normaloff>:/icons/white/Save</iconset>
    </property>
    <property name="text">
     <string>Сохранить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="action_Exit">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Exit</normaloff>:/icons/Exit</iconset>
+     <normaloff>:/icons/white/Exit</normaloff>:/icons/white/Exit</iconset>
    </property>
    <property name="text">
     <string>Выйти</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Q</string>
    </property>
   </action>
   <action name="action_ChangeUser">
@@ -316,28 +393,37 @@ QMenu::item:selected {
   <action name="action_SaveFileAs">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Save</normaloff>:/icons/Save</iconset>
+     <normaloff>:/icons/white/Save</normaloff>:/icons/white/Save</iconset>
    </property>
    <property name="text">
     <string>Сохранит как...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="action_Print">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Printer</normaloff>:/icons/Printer</iconset>
+     <normaloff>:/icons/white/Printer</normaloff>:/icons/white/Printer</iconset>
    </property>
    <property name="text">
     <string>Печать...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
   <action name="action_OpenFile">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Folder</normaloff>:/icons/Folder</iconset>
+     <normaloff>:/icons/white/Folder</normaloff>:/icons/white/Folder</iconset>
    </property>
    <property name="text">
     <string>Открыть</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="action_CloseFile">
@@ -348,55 +434,31 @@ QMenu::item:selected {
   <action name="action_NewFile">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/NewFile</normaloff>:/icons/NewFile</iconset>
+     <normaloff>:/icons/white/NewFile</normaloff>:/icons/white/NewFile</iconset>
    </property>
    <property name="text">
     <string>Новый</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="action_Statistics">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/BarGraph</normaloff>:/icons/BarGraph</iconset>
+     <normaloff>:/icons/white/BarGraph</normaloff>:/icons/white/BarGraph</iconset>
    </property>
    <property name="text">
     <string>Статистика</string>
    </property>
   </action>
-  <action name="action_NewRow">
+  <action name="action_NewClient">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Plus</normaloff>:/icons/Plus</iconset>
+     <normaloff>:/icons/white/AddUser</normaloff>:/icons/white/AddUser</iconset>
    </property>
    <property name="text">
-    <string>Новая строка</string>
-   </property>
-  </action>
-  <action name="action_SelectDate">
-   <property name="icon">
-    <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Calendar</normaloff>:/icons/Calendar</iconset>
-   </property>
-   <property name="text">
-    <string>Выбрать дату</string>
-   </property>
-  </action>
-  <action name="action_SelectTime">
-   <property name="icon">
-    <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Clock</normaloff>:/icons/Clock</iconset>
-   </property>
-   <property name="text">
-    <string>Выбрать время</string>
-   </property>
-  </action>
-  <action name="action_SelectDateTime">
-   <property name="icon">
-    <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/CalendarAndClock</normaloff>:/icons/CalendarAndClock</iconset>
-   </property>
-   <property name="text">
-    <string>Выбрать дату и время</string>
+    <string>Новый клиент</string>
    </property>
   </action>
   <action name="action_export">
@@ -412,10 +474,84 @@ QMenu::item:selected {
   <action name="action_exportToDatabase">
    <property name="icon">
     <iconset resource="../res/Res.qrc">
-     <normaloff>:/icons/Server</normaloff>:/icons/Server</iconset>
+     <normaloff>:/icons/white/Server</normaloff>:/icons/white/Server</iconset>
    </property>
    <property name="text">
     <string>Отправить в БД</string>
+   </property>
+  </action>
+  <action name="action_NewGroup">
+   <property name="icon">
+    <iconset resource="../res/Res.qrc">
+     <normaloff>:/icons/white/AddGroup</normaloff>:/icons/white/AddGroup</iconset>
+   </property>
+   <property name="text">
+    <string>Новая группа</string>
+   </property>
+  </action>
+  <action name="action_Undo">
+   <property name="icon">
+    <iconset resource="../res/Res.qrc">
+     <normaloff>:/icons/white/Undo</normaloff>:/icons/white/Undo</iconset>
+   </property>
+   <property name="text">
+    <string>Отменить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="action_Redo">
+   <property name="icon">
+    <iconset resource="../res/Res.qrc">
+     <normaloff>:/icons/white/Redo</normaloff>:/icons/white/Redo</iconset>
+   </property>
+   <property name="text">
+    <string>Вернуть</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="action_Cut">
+   <property name="icon">
+    <iconset resource="../res/Res.qrc">
+     <normaloff>:/icons/white/Cut</normaloff>:/icons/white/Cut</iconset>
+   </property>
+   <property name="text">
+    <string>Вырезать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="action_Copy">
+   <property name="icon">
+    <iconset resource="../res/Res.qrc">
+     <normaloff>:/icons/white/Copy</normaloff>:/icons/white/Copy</iconset>
+   </property>
+   <property name="text">
+    <string>Копировать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_Paste">
+   <property name="icon">
+    <iconset resource="../res/Res.qrc">
+     <normaloff>:/icons/white/Paste</normaloff>:/icons/white/Paste</iconset>
+   </property>
+   <property name="text">
+    <string>Вставить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="action_GroupManagement">
+   <property name="text">
+    <string>Управление группами</string>
    </property>
   </action>
  </widget>

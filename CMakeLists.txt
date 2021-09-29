@@ -13,31 +13,68 @@ set(CMAKE_AUTOUIC_SEARCH_PATHS ui)
 
 #   =====================
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
-
-#set(TS_FILES localization/IESAA_ru_RU.ts)
-
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 
 add_executable(IESAA
-  src/IESAA.cpp
+    src/IESAA.cpp
+    src/IESAAError.cpp
+    src/IESAAError.h
 
-  src/windows/IESAAWindow.cpp
-  src/windows/IESAAWindow.h
-  ui/IESAAWindow.ui
+    src/windows/IESAAWindow.cpp
+    src/windows/IESAAWindow.h
+    ui/IESAAWindow.ui
 
-  src/windows/AuthorizationWindow.cpp
-  src/windows/AuthorizationWindow.h
-  ui/AuthorizationWindow.ui
+    src/windows/AuthorizationWindow/AuthorizationWindow.cpp
+    src/windows/AuthorizationWindow/AuthorizationWindow.h
+    src/windows/AuthorizationWindow/MessageBar.cpp
+    src/windows/AuthorizationWindow/MessageBar.h
+    ui/AuthorizationWindow.ui
 
-  res/Res.qrc
+    src/windows/SettingsWindow/SettingsWindow.cpp
+    src/windows/SettingsWindow/SettingsWindow.h
+    ui/SettingsWindow.ui
 
-#  ${TS_FILES}
+    src/windows/CPFCreationWindow/CPFCreationWindow.cpp
+    src/windows/CPFCreationWindow/CPFCreationWindow.h
+    ui/CPFCreationWindow.ui
+
+    src/windows/LogsWindow/LogsWindow.cpp
+    src/windows/LogsWindow/LogsWindow.h
+    ui/LogsWindow.ui
+
+    src/windows/AboutIESAAWindow/AboutIESAAWindow.cpp
+    src/windows/AboutIESAAWindow/AboutIESAAWindow.h
+    ui/AboutIESAAWindow.ui
+
+    src/windows/ClientCreationWindow/ClientCreationWindow.cpp
+    src/windows/ClientCreationWindow/ClientCreationWindow.h
+    ui/ClientCreationWindow.ui
+
+    src/windows/GroupManagementWindow/GroupManagementWindow.cpp
+    src/windows/GroupManagementWindow/GroupManagementWindow.h
+    ui/GroupManagementWindow.ui
+
+    src/windows/StaffWindow/StaffWindow.cpp
+    src/windows/StaffWindow/StaffWindow.h
+    ui/StaffWindow.ui
+
+    src/windows/StatisticsWindow/StatisticsWindow.cpp
+    src/windows/StatisticsWindow/StatisticsWindow.h
+    ui/StatisticsWindow.ui
+
+    src/windows/PostCreationWindow/PostCreationWindow.cpp
+    src/windows/PostCreationWindow/PostCreationWindow.h
+    ui/PostCreationWindow.ui
+
+    src/windows/EmployeeDefinitionWindow/EmployeeDefinitionWindow.cpp
+    src/windows/EmployeeDefinitionWindow/EmployeeDefinitionWindow.h
+    ui/EmployeeDefinitionWindow.ui
+
+    res/Res.qrc
 )
 
-target_include_directories(IESAA PRIVATE src/windows)
+target_include_directories(IESAA PRIVATE src)
 
 target_link_libraries(IESAA PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
-#qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ../../${TS_FILES})

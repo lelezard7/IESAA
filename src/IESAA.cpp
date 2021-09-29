@@ -1,5 +1,5 @@
-#include "IESAAWindow.h"
-#include "AuthorizationWindow.h"
+#include "windows/IESAAWindow.h"
+#include "windows/AuthorizationWindow/AuthorizationWindow.h"
 
 #include <QApplication>
 
@@ -7,10 +7,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    AuthorizationWindow authorizationWindow;
+//    AuthorizationWindow authorizationWindow;
 
-    if (authorizationWindow.exec() != QDialog::Accepted)
-        return 0;
+//    if (authorizationWindow.exec() != QDialog::Accepted)
+//        return 0;
 
     IESAAWindow iesaa_window;
     iesaa_window.show();
