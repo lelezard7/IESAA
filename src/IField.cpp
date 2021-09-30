@@ -1,22 +1,6 @@
 #include "IField.h"
 
 
-//template<class T>
-//void
-//DataType<T>::
-//addData(T data)
-//{
-//    data_.push_back(data);
-//}
-
-//template<class T>
-//T
-//DataType<T>::
-//getData(size_t i) const
-//{
-//    return data_[i];
-//}
-
 IField::
 IField()
     : id_(0) {}
@@ -66,3 +50,5 @@ getName()const
 //{
 //    return data_[i];
 //}
+
+

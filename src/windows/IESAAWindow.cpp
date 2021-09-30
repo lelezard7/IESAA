@@ -15,6 +15,28 @@
 #include "../IField.h"
 
 
+DEFINE_FIELD_DATA_TYPE(
+        int,
+        Func_Format(int), {
+            return data;
+        },
+        Func_IsValid(int), {
+            return !data;
+        }
+        )
+
+DEFINE_FIELD_DATA_TYPE(
+        QDate,
+        Func_IsValid(QDate), {
+            return data == QDate(1, 1, 1);
+        },
+        Func_Format(QDate), {
+            return data == QDate(3, 3, 3);
+        }
+        )
+
+
+
 IESAAWindow::
 IESAAWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -71,26 +93,41 @@ IESAAWindow(QWidget* parent)
     connect(ui_->mainTable, &QMenu::customContextMenuRequested, this, &IESAAWindow::fff);
 
 
-//    QFont font;
-//    font.setBold(true);
-//    ui_->mainTable->horizontalHeaderItem(1)->setFont(font);
 
-//    font.setFamily("Comic Sans MS");
+    FIELD_DATA_TYPE(int) ddddd;
+    ddddd.addData(3);
 
-//    ui_->mainTable->horizontalHeaderItem(2)->setFont(font);
+    qDebug() << ddddd.isValid(0);
+    qDebug() << ddddd.isValid(909000);
+    qDebug() << ddddd.format(55);
 
+    qDebug() << "---------------------";
 
+    FIELD_DATA_TYPE(QDate) ddddd2;
+    ddddd2.addData({2021, 11, 13});
 
-    DataType<int> f1;
-    f1.addData(3);
+    qDebug() << ddddd2.isValid({1, 1, 1});
+    qDebug() << ddddd2.isValid({1, 1, 28});
+
 
     IField field;
-    field.addData(f1);
-    field.addData(DataType{3.5f});
+    field.addData(ddddd);
+    field.addData(ddddd2);
 
-    auto a = field.getData<int>(0);
-    qDebug() << "-----------" << typeid(f1).name();
-    qDebug() << "-----------" << typeid(a).name();
+    auto fff = field.getData(0);
+    auto a1 = CAST::ConvertToFIELD_DATA_TYPE_int(fff);
+
+    auto fff2 = field.getData(1);
+    auto a2 = CAST::ConvertToFIELD_DATA_TYPE_QDate(fff2);
+
+
+
+
+
+
+
+
+    //    auto ff = fieldToValue<int>(field, 0);
 }
 
 IESAAWindow::
