@@ -1,11 +1,22 @@
-#include "CPFCreationWindow.h"
-#include "ui_CPFCreationWindow.h"
+#include "PFCreationWindow.h"
+#include "ui_PFCreationWindow.h"
 
 
-CPFCreationWindow::
-CPFCreationWindow(QWidget *parent)
+template<class T>
+struct A
+{
+    T value_;
+};
+
+struct B : public A<int>
+{
+
+};
+
+PFCreationWindow::
+PFCreationWindow(QWidget* parent)
     : QDialog(parent)
-    , ui_(new Ui::CPFCreationWindow)
+    , ui_(new Ui::PFCreationWindow)
 {
     ui_->setupUi(this);
     setFixedSize(size());
@@ -23,8 +34,8 @@ CPFCreationWindow(QWidget *parent)
     ui_->comboBox_2->addItem("Список");
 }
 
-CPFCreationWindow::
-~CPFCreationWindow()
+PFCreationWindow::
+~PFCreationWindow()
 {
     delete ui_;
 }

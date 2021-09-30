@@ -19,8 +19,16 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 add_executable(IESAA
     src/IESAA.cpp
+    src/IESAA.h
+
     src/IESAAError.cpp
     src/IESAAError.h
+
+    src/IProfile.cpp
+    src/IProfile.h
+
+    src/IField.cpp
+    src/IField.h
 
     src/windows/IESAAWindow.cpp
     src/windows/IESAAWindow.h
@@ -36,9 +44,9 @@ add_executable(IESAA
     src/windows/SettingsWindow/SettingsWindow.h
     ui/SettingsWindow.ui
 
-    src/windows/CPFCreationWindow/CPFCreationWindow.cpp
-    src/windows/CPFCreationWindow/CPFCreationWindow.h
-    ui/CPFCreationWindow.ui
+    src/windows/PFCreationWindow/PFCreationWindow.cpp
+    src/windows/PFCreationWindow/PFCreationWindow.h
+    ui/PFCreationWindow.ui
 
     src/windows/LogsWindow/LogsWindow.cpp
     src/windows/LogsWindow/LogsWindow.h
@@ -48,9 +56,9 @@ add_executable(IESAA
     src/windows/AboutIESAAWindow/AboutIESAAWindow.h
     ui/AboutIESAAWindow.ui
 
-    src/windows/ClientCreationWindow/ClientCreationWindow.cpp
-    src/windows/ClientCreationWindow/ClientCreationWindow.h
-    ui/ClientCreationWindow.ui
+    src/windows/ProfileCreationWindow/ProfileCreationWindow.cpp
+    src/windows/ProfileCreationWindow/ProfileCreationWindow.h
+    ui/ProfileCreationWindow.ui
 
     src/windows/GroupManagementWindow/GroupManagementWindow.cpp
     src/windows/GroupManagementWindow/GroupManagementWindow.h

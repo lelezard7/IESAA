@@ -6,9 +6,13 @@
 #include "SettingsWindow/SettingsWindow.h"
 #include "LogsWindow/LogsWindow.h"
 #include "AboutIESAAWindow/AboutIESAAWindow.h"
-#include "ClientCreationWindow/ClientCreationWindow.h"
+#include "ProfileCreationWindow/ProfileCreationWindow.h"
 #include "GroupManagementWindow/GroupManagementWindow.h"
 #include "StatisticsWindow/StatisticsWindow.h"
+
+
+#include "../IProfile.h"
+#include "../IField.h"
 
 
 IESAAWindow::
@@ -57,6 +61,16 @@ IESAAWindow(QWidget* parent)
     std::for_each(content.begin(), content.end(), fillTableRow);
 
 
+    ui_->mainTable->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
+
+    menu_ = new QMenu;
+    menu_->addAction("Редактировать");
+    menu_->addAction("Копировать");
+    menu_->addAction("Вырезать");
+    menu_->addAction("Вставить");
+    connect(ui_->mainTable, &QMenu::customContextMenuRequested, this, &IESAAWindow::fff);
+
+
 //    QFont font;
 //    font.setBold(true);
 //    ui_->mainTable->horizontalHeaderItem(1)->setFont(font);
@@ -64,6 +78,19 @@ IESAAWindow(QWidget* parent)
 //    font.setFamily("Comic Sans MS");
 
 //    ui_->mainTable->horizontalHeaderItem(2)->setFont(font);
+
+
+
+    DataType<int> f1;
+    f1.addData(3);
+
+    IField field;
+    field.addData(f1);
+    field.addData(DataType{3.5f});
+
+    auto a = field.getData<int>(0);
+    qDebug() << "-----------" << typeid(f1).name();
+    qDebug() << "-----------" << typeid(a).name();
 }
 
 IESAAWindow::
@@ -100,7 +127,7 @@ void
 IESAAWindow::
 on_action_NewClient_triggered()
 {
-    ClientCreationWindow clientCreationWindow(this);
+    ProfileCreationWindow clientCreationWindow(this);
     clientCreationWindow.exec();
 }
 
@@ -108,7 +135,7 @@ void
 IESAAWindow::
 on_action_NewGroup_triggered()
 {
-    ClientCreationWindow clientCreationWindow(this);
+    ProfileCreationWindow clientCreationWindow(this);
     clientCreationWindow.exec();
 }
 
@@ -135,4 +162,12 @@ on_action_Statistics_triggered()
 {
     StatisticsWindow statisticsWindow(this);
     statisticsWindow.exec();
+}
+
+void
+IESAAWindow::
+fff(const QPoint &pos)
+{
+    menu_->popup(mapToGlobal(pos));
+    ui_->infoBar->setText("dddddd");
 }

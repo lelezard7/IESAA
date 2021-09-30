@@ -2,7 +2,7 @@
 #include "ui_StaffWindow.h"
 
 #include "../PostCreationWindow/PostCreationWindow.h"
-#include "../ClientCreationWindow/ClientCreationWindow.h"
+#include "../ProfileCreationWindow/ProfileCreationWindow.h"
 #include "../EmployeeDefinitionWindow/EmployeeDefinitionWindow.h"
 
 
@@ -32,7 +32,7 @@ void
 StaffWindow::
 on_pushButton_clicked()
 {
-    ClientCreationWindow clientCreationWindow(this);
+    ProfileCreationWindow clientCreationWindow(this);
     clientCreationWindow.exec();
 
     EmployeeDefinitionWindow employeeDefinitionWindow(this);

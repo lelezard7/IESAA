@@ -1,7 +1,7 @@
 #include "SettingsWindow.h"
 #include "ui_SettingsWindow.h"
 
-#include "../CPFCreationWindow/CPFCreationWindow.h"
+#include "../PFCreationWindow/PFCreationWindow.h"
 
 #include <QFontDialog>
 #include <QColorDialog>
@@ -34,7 +34,7 @@ void
 SettingsWindow::
 on_pushButton_clicked()
 {
-    CPFCreationWindow cpf_creationWindow(this);
+    PFCreationWindow cpf_creationWindow(this);
     cpf_creationWindow.exec();
 }
 

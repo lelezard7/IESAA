@@ -4,6 +4,7 @@
 #include "StaffWindow/StaffWindow.h"
 
 #include <QMainWindow>
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -20,6 +21,7 @@ class IESAAWindow : public QMainWindow
 private:
     Ui::IESAAWindow* ui_;
     StaffWindow* staffWindow_;
+    QMenu* menu_;
 
 public:
     IESAAWindow(QWidget* parent = nullptr);
@@ -35,6 +37,7 @@ private slots:
     void on_action_Staff_triggered();
     void on_action_Statistics_triggered();
 
+    void fff(const QPoint &pos);
 };
 
 #endif

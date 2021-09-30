@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CPFCreationWindow</class>
- <widget class="QDialog" name="CPFCreationWindow">
+ <class>PFCreationWindow</class>
+ <widget class="QDialog" name="PFCreationWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>IESAA | Создание поля для профиля клиента</string>
+   <string>IESAA | Создание поля профиля</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -71,7 +71,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>CPFCreationWindow</receiver>
+   <receiver>PFCreationWindow</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -87,7 +87,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>CPFCreationWindow</receiver>
+   <receiver>PFCreationWindow</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

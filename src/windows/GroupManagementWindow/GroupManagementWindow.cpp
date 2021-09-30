@@ -1,7 +1,7 @@
 #include "GroupManagementWindow.h"
 #include "ui_GroupManagementWindow.h"
 
-#include "../ClientCreationWindow/ClientCreationWindow.h"
+#include "../ProfileCreationWindow/ProfileCreationWindow.h"
 
 
 GroupManagementWindow::
@@ -32,7 +32,7 @@ void
 GroupManagementWindow::
 on_pushButton_4_clicked()
 {
-    ClientCreationWindow clientCreationWindow;
+    ProfileCreationWindow clientCreationWindow;
     clientCreationWindow.exec();
 }
 
@@ -40,6 +40,6 @@ void
 GroupManagementWindow::
 on_pushButton_6_clicked()
 {
-    ClientCreationWindow clientCreationWindow;
+    ProfileCreationWindow clientCreationWindow;
     clientCreationWindow.exec();
 }

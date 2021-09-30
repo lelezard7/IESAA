@@ -29,6 +29,8 @@
         <file alias="ArrowToRight">icons/white/ArrowToRight.svg</file>
         <file alias="Cross">icons/white/Cross.svg</file>
         <file alias="Magnifier">icons/white/Magnifier.svg</file>
+        <file alias="Bell">icons/white/Bell.svg</file>
+        <file alias="Filter">icons/white/Filter.svg</file>
     </qresource>
     <qresource prefix="/icons/black">
         <file alias="Book">icons/black/Book.svg</file>
@@ -60,5 +62,7 @@
         <file alias="ArrowToRight">icons/black/ArrowToRight.svg</file>
         <file alias="Cross">icons/black/Cross.svg</file>
         <file alias="Magnifier">icons/black/Magnifier.svg</file>
+        <file alias="Bell">icons/black/Bell.svg</file>
+        <file alias="Filter">icons/black/Filter.svg</file>
     </qresource>
 </RCC>
