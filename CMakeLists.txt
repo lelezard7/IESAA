@@ -28,7 +28,11 @@ add_executable(IESAA
     src/IProfile.h
 
     src/IField.cpp
+    src/IField.inl
     src/IField.h
+
+    src/LocalDB.cpp
+    src/LocalDB.h
 
     src/windows/IESAAWindow.cpp
     src/windows/IESAAWindow.h
@@ -46,6 +50,8 @@ add_executable(IESAA
 
     src/windows/PFCreationWindow/PFCreationWindow.cpp
     src/windows/PFCreationWindow/PFCreationWindow.h
+    src/windows/PFCreationWindow/FieldCreator.cpp
+    src/windows/PFCreationWindow/FieldCreator.h
     ui/PFCreationWindow.ui
 
     src/windows/LogsWindow/LogsWindow.cpp

@@ -7,6 +7,10 @@
 
 #include <QDialog>
 
+#include "../../LocalDB.h"
+#include "FieldCreator.h"
+
+
 namespace Ui
 {
     class PFCreationWindow;
@@ -19,10 +23,15 @@ class PFCreationWindow : public QDialog
 
 private:
     Ui::PFCreationWindow* ui_;
+    IProfile* profile_;
+    FieldCreator fieldCreator;
 
 public:
-    explicit PFCreationWindow(QWidget* parent = nullptr);
+    explicit PFCreationWindow(IProfile* profile, QWidget* parent = nullptr);
     ~PFCreationWindow();
+
+private slots:
+    void on_buttonBox_accepted();
 
 };
 

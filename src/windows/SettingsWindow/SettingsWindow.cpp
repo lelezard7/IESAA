@@ -34,7 +34,7 @@ void
 SettingsWindow::
 on_pushButton_clicked()
 {
-    PFCreationWindow cpf_creationWindow(this);
+    PFCreationWindow cpf_creationWindow(nullptr, this);
     cpf_creationWindow.exec();
 }
 

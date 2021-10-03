@@ -12,28 +12,9 @@
 
 
 #include "../IProfile.h"
-#include "../IField.h"
 
 
-DEFINE_FIELD_DATA_TYPE(
-        int,
-        Func_Format(int), {
-            return data;
-        },
-        Func_IsValid(int), {
-            return !data;
-        }
-        )
 
-DEFINE_FIELD_DATA_TYPE(
-        QDate,
-        Func_IsValid(QDate), {
-            return data == QDate(1, 1, 1);
-        },
-        Func_Format(QDate), {
-            return data == QDate(3, 3, 3);
-        }
-        )
 
 
 
@@ -93,33 +74,34 @@ IESAAWindow(QWidget* parent)
     connect(ui_->mainTable, &QMenu::customContextMenuRequested, this, &IESAAWindow::fff);
 
 
+//    FIELD_DATA_TYPE(int, int) ddddd;
+//    ddddd.addData(3);
 
-    FIELD_DATA_TYPE(int) ddddd;
-    ddddd.addData(3);
+//    qDebug() << ddddd.isValid(0);
+//    qDebug() << ddddd.isValid(909000);
+//    qDebug() << ddddd.format(55);
 
-    qDebug() << ddddd.isValid(0);
-    qDebug() << ddddd.isValid(909000);
-    qDebug() << ddddd.format(55);
+//    qDebug() << "---------------------";
 
-    qDebug() << "---------------------";
+//    FIELD_DATA_TYPE(QDate, int) ddddd2;
+//    ddddd2.addData({2021, 11, 13});
 
-    FIELD_DATA_TYPE(QDate) ddddd2;
-    ddddd2.addData({2021, 11, 13});
-
-    qDebug() << ddddd2.isValid({1, 1, 1});
-    qDebug() << ddddd2.isValid({1, 1, 28});
+//    qDebug() << ddddd2.isValid({1, 1, 1});
+//    qDebug() << ddddd2.isValid({1, 1, 28});
 
 
-    IField field;
-    field.addData(ddddd);
-    field.addData(ddddd2);
+//    IField<int, int> field;
+//    field.addData(&ddddd);
 
-    auto fff = field.getData(0);
-    auto a1 = CAST::ConvertToFIELD_DATA_TYPE_int(fff);
+//    IField<QDate, int> field2;
+//    field2.addData(&ddddd2);
 
-    auto fff2 = field.getData(1);
-    auto a2 = CAST::ConvertToFIELD_DATA_TYPE_QDate(fff2);
+//    IProfile profile;
+//    profile.addField(field);
+//    profile.addField(field2);
 
+//    auto a = profile.getField<int, int>(FIELD_DATA_TYPE_NAME(int, int));
+//    auto b = profile.getField<QDate, int>(FIELD_DATA_TYPE_NAME(QDate, int));
 
 
 
@@ -166,6 +148,9 @@ on_action_NewClient_triggered()
 {
     ProfileCreationWindow clientCreationWindow(this);
     clientCreationWindow.exec();
+
+//    auto dd = getStaff("p1");
+//    auto gg = dd->getField<int, int>(FIELD_DATA_TYPE_NAME(int, int));
 }
 
 void
