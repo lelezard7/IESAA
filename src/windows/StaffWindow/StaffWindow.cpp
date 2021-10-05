@@ -32,9 +32,9 @@ void
 StaffWindow::
 on_pushButton_clicked()
 {
-    ProfileCreationWindow clientCreationWindow(this);
-    clientCreationWindow.exec();
+//    ProfileCreationWindow clientCreationWindow(this);
+//    clientCreationWindow.exec();
 
-    EmployeeDefinitionWindow employeeDefinitionWindow(this);
-    employeeDefinitionWindow.exec();
+//    EmployeeDefinitionWindow employeeDefinitionWindow(this);
+//    employeeDefinitionWindow.exec();
 }

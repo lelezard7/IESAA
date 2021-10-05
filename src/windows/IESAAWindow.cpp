@@ -14,6 +14,10 @@
 #include "../IProfile.h"
 
 
+#define ProfileCategory_Clients   "Клиенты"
+#define ProfileCategory_Staff     "Персонал"
+#define ProfileCategory_Groups    "Группы"
+
 
 
 
@@ -24,6 +28,10 @@ IESAAWindow(QWidget* parent)
     , ui_(new Ui::IESAAWindow)
 {
     ui_->setupUi(this);
+
+    defaultFieldManager.createCategory(ProfileCategory_Clients);
+    defaultFieldManager.createCategory(ProfileCategory_Staff);
+    defaultFieldManager.createCategory(ProfileCategory_Groups);
 
     //   === Для демонстрации клиенту ===
 
@@ -146,7 +154,7 @@ void
 IESAAWindow::
 on_action_NewClient_triggered()
 {
-    ProfileCreationWindow clientCreationWindow(this);
+    ProfileCreationWindow clientCreationWindow(defaultFieldManager.find(ProfileCategory_Clients), this);
     clientCreationWindow.exec();
 
 //    auto dd = getStaff("p1");
@@ -157,7 +165,7 @@ void
 IESAAWindow::
 on_action_NewGroup_triggered()
 {
-    ProfileCreationWindow clientCreationWindow(this);
+    ProfileCreationWindow clientCreationWindow(defaultFieldManager.find(ProfileCategory_Groups), this);
     clientCreationWindow.exec();
 }
 

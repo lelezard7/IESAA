@@ -2,6 +2,14 @@
 #define SETTINGSWINDOW_H_
 
 #include <QDialog>
+#include "../../LocalDB.h"
+
+
+
+
+
+
+
 
 
 namespace Ui

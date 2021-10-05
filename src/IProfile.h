@@ -1,60 +1,85 @@
 #ifndef IPROFILE_H_
 #define IPROFILE_H_
 
-#include "IField.h"
+//#include "IField.h"
 
 #include <QVector>
 
+//#define FindByName(Name) \
 
-class IProfile
-{
-    int id_;
-    QString name_;
 
-    QVector<QPair<QString, QVariant>> fields_;
 
-public:
-    IProfile();
-    virtual ~IProfile();
+//class IProfile
+//{
+//    int id_;
+//    QString name_;
 
-    template<class T_Data, class T_Ui>
-    bool addField(IField<T_Data, T_Ui> field) {
-        QVariant var;
-        var.setValue(std::move(field));
-        fields_.push_back(QPair<QString, QVariant>(field.getData(0)->getName(), std::move(var)));
-        return true;
-    };
+//    QVector<QPair<ID, QVariant>> fields_;
 
-    template<class T_Data, class T_Ui>
-    IField<T_Data, T_Ui> getField(QString key) const {
-        QVector<QPair<QString, QVariant>>::const_iterator dd = std::find_if(fields_.begin(), fields_.end(),
-                         [key](const QPair<QString, QVariant>& it) {
-            return it.first == key;
-        });
+//public:
+//    IProfile();
+//    virtual ~IProfile();
 
-        return dd->second.value<IField<T_Data, T_Ui>>();
-    };
+//    template<class T_Data, class T_Ui>
+//    bool addField(IField<T_Data, T_Ui> field) {
+//        QVariant var;
+//        var.setValue(std::move(field));
+//        fields_.push_back(QPair<ID, QVariant>(field.getId(), std::move(var)));
+//        return true;
+//    };
 
-//    bool removeField(int i);
+//    template<class T_Data, class T_Ui>
+//    IField<T_Data, T_Ui> getField(ID id) const {
+//        QVector<QPair<ID, QVariant>>::const_iterator dd;
+//        dd = std::find_if(fields_.begin(), fields_.end(),
+//                          [id](const QPair<ID, QVariant>& it) {
+//            return it.first == id;
+//        });
 
-//    void setId(int value);
-//    int getId();
+//        return dd->second.value<IField<T_Data, T_Ui>>();
+//    };
 
-    void setName(QString value) {
-        name_ = value;
-    };
+//    template<class T_Data, class T_Ui>
+//    IField<T_Data, T_Ui> getField(QString name) const {
 
-    QString getName() const {
-        return name_;
-    };
 
-};
 
-#define DefConvertTo(DataType, Ui_Type) \
-    IField<DataType, Ui_Type>                                                      \
-    CastTo##DataType##_##Ui_Type(IProfile& other) {                                \
-       return other.getField<DataType, Ui_Type>(FIELD_DATA_TYPE_NAME(DataType, Ui_Type));   \
-    }
+
+
+
+//        bool a = fields_[0].second.canConvert<IField<T_Data, T_Ui>>();
+//        bool b = fields_[1].second.canConvert<IField<T_Data, T_Ui>>();
+//        return fields_[0].second.value<IField<T_Data, T_Ui>>();
+//    };
+
+//    ID getFieldTypeId(size_t i) const {
+//        return fields_[i].first;
+//    };
+
+//    size_t size() const {
+//        return fields_.size();
+//    }
+
+////    bool removeField(int i);
+
+////    void setId(int value);
+////    int getId();
+
+//    void setName(QString value) {
+//        name_ = value;
+//    };
+
+//    QString getName() const {
+//        return name_;
+//    };
+
+//};
+
+//#define DefConvertTo(DataType, Ui_Type)                                             \
+//    IField<DataType, Ui_Type>                                                       \
+//    CastTo##DataType##_##Ui_Type(IProfile& other) {                                 \
+//       return other.getField<DataType, Ui_Type>(DATATYPE_ID(DataType, Ui_Type));    \
+//    }
 
 
 

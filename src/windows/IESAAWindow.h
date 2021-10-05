@@ -2,6 +2,7 @@
 #define IESAAWINDOW_H_
 
 #include "StaffWindow/StaffWindow.h"
+#include "LocalDB.h"
 
 #include <QMainWindow>
 #include <QMenu>
@@ -22,6 +23,8 @@ private:
     Ui::IESAAWindow* ui_;
     StaffWindow* staffWindow_;
     QMenu* menu_;
+
+    DefaultFieldManager defaultFieldManager;
 
 public:
     IESAAWindow(QWidget* parent = nullptr);

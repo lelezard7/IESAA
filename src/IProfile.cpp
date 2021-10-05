@@ -1,18 +1,18 @@
 #include "IProfile.h"
 
 
-IProfile::
-IProfile()
-    : id_(0)
-{
+//IProfile::
+//IProfile()
+//    : id_(0)
+//{
 
-}
+//}
 
-IProfile::
-~IProfile()
-{
+//IProfile::
+//~IProfile()
+//{
 
-}
+//}
 
 //bool
 //IProfile::

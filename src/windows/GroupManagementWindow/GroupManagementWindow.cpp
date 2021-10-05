@@ -32,14 +32,14 @@ void
 GroupManagementWindow::
 on_pushButton_4_clicked()
 {
-    ProfileCreationWindow clientCreationWindow;
-    clientCreationWindow.exec();
+//    ProfileCreationWindow clientCreationWindow;
+//    clientCreationWindow.exec();
 }
 
 void
 GroupManagementWindow::
 on_pushButton_6_clicked()
 {
-    ProfileCreationWindow clientCreationWindow;
-    clientCreationWindow.exec();
+//    ProfileCreationWindow clientCreationWindow;
+//    clientCreationWindow.exec();
 }

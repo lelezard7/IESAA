@@ -3,8 +3,23 @@
 
 #include <QDialog>
 #include <memory>
-#include "../../IProfile.h"
-#include "../PFCreationWindow/PFCreationWindow.h"
+#include "../../LocalDB.h"
+#include "../PFCreationWindow/FieldCreator.h"
+//#include "../PFCreationWindow/PFCreationWindow.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace Ui
 {
@@ -18,13 +33,17 @@ class ProfileCreationWindow : public QDialog
 
 private:
     Ui::ProfileCreationWindow* ui_;
-    PFCreationWindow* pf_creationWindow_;
+    FieldCreator fieldCreator_;
+
+
+
+
+//    PFCreationWindow* pf_creationWindow_;
+
+//    std::unique_ptr<IProfile> profile_;
 
 public:
-    std::unique_ptr<IProfile> profile_;
-
-public:
-    explicit ProfileCreationWindow(QWidget* parent = nullptr);
+    explicit ProfileCreationWindow(FieldDataBase* defaultDB, QWidget* parent = nullptr);
     ~ProfileCreationWindow();
 
 private slots:

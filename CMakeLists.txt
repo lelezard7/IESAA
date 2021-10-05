@@ -32,7 +32,11 @@ add_executable(IESAA
     src/IField.h
 
     src/LocalDB.cpp
+    src/LocalDB.inl
     src/LocalDB.h
+
+    src/FieldTableManager.cpp
+    src/FieldTableManager.h
 
     src/windows/IESAAWindow.cpp
     src/windows/IESAAWindow.h
@@ -87,6 +91,8 @@ add_executable(IESAA
     ui/EmployeeDefinitionWindow.ui
 
     res/Res.qrc
+
+    libs/ONF_v0.0.0/include/IdManagement.h
 )
 
 target_include_directories(IESAA PRIVATE src)

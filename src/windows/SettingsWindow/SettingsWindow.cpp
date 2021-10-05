@@ -6,6 +6,22 @@
 #include <QFontDialog>
 #include <QColorDialog>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 SettingsWindow::
 SettingsWindow(QWidget* parent)
     : QDialog(parent)
@@ -34,8 +50,8 @@ void
 SettingsWindow::
 on_pushButton_clicked()
 {
-    PFCreationWindow cpf_creationWindow(nullptr, this);
-    cpf_creationWindow.exec();
+//    PFCreationWindow cpf_creationWindow(nullptr, this);
+//    cpf_creationWindow.exec();
 }
 
 void
