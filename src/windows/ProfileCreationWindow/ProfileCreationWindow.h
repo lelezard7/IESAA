@@ -2,10 +2,11 @@
 #define PROFILECREATIONWINDOW_H_
 
 #include <QDialog>
+#include <QString>
 #include <memory>
 #include "../../LocalDB.h"
 #include "../PFCreationWindow/FieldCreator.h"
-//#include "../PFCreationWindow/PFCreationWindow.h"
+#include "../PFCreationWindow/PFCreationWindow.h"
 
 
 
@@ -33,12 +34,12 @@ class ProfileCreationWindow : public QDialog
 
 private:
     Ui::ProfileCreationWindow* ui_;
-    FieldCreator fieldCreator_;
+    TableManager_Profile fieldCreator_;
 
 
 
 
-//    PFCreationWindow* pf_creationWindow_;
+    PFCreationWindow* pf_creationWindow_;
 
 //    std::unique_ptr<IProfile> profile_;
 
@@ -50,6 +51,9 @@ private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void on_buttonBox_accepted();
+
+//public slots:
+//    void createRow(QString name, Field* field);
 
 };
 

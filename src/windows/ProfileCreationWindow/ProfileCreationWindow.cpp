@@ -1,7 +1,7 @@
 #include "ProfileCreationWindow.h"
 #include "ui_ProfileCreationWindow.h"
 
-#include "../../LocalDB.h"
+
 
 #include <QComboBox>
 
@@ -53,6 +53,15 @@ ProfileCreationWindow(FieldDataBase* defaultDB, QWidget* parent)
 
 //    ui_->tableWidget->setColumnCount(2);
     ui_->tableWidget->setRowCount(4);
+
+
+
+//    FieldLineEdit* fle = new FieldLineEdit;
+//    static_cast<QLineEdit*>(fle->getWidget())->setText("sdfsdf");
+//    Field* field = new Field;
+//    field->setWidget(fle);
+
+//    fieldCreator_.addField(field);
 
 
 
@@ -108,7 +117,7 @@ ProfileCreationWindow(FieldDataBase* defaultDB, QWidget* parent)
 
 
 //    profile_ = std::make_unique<IProfile>();
-//    pf_creationWindow_ = new PFCreationWindow(profile_.get(), this);
+    pf_creationWindow_ = new PFCreationWindow(&fieldCreator_, this);
 }
 
 ProfileCreationWindow::
@@ -122,6 +131,7 @@ void
 ProfileCreationWindow::
 on_pushButton_clicked()
 {
+    pf_creationWindow_->exec();
 //    if (pf_creationWindow_->exec()) {
 //        for (size_t i = 0; i < profile_->size(); ++i) {
 //            switch (profile_->getFieldTypeId(i)) {

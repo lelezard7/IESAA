@@ -43,7 +43,9 @@ public:
 
     virtual bool drawInTableWidget(QTableWidget& tableWidget, CellCoord cellCoord) const = 0;
 
-protected:
+    virtual IFieldWidget& operator=(const IFieldWidget& other) = 0;
+
+//protected:
     virtual QWidget* copyWidget() const = 0;
 
 };
@@ -64,10 +66,11 @@ public:
 
     virtual bool drawInTableWidget(QTableWidget& tableWidget, CellCoord cellCoord) const override;
 
-    FieldLineEdit& operator=(FieldLineEdit&& other) = delete;
-    FieldLineEdit& operator=(const FieldLineEdit& other);
+    virtual IFieldWidget& operator=(const IFieldWidget& other) override;
+//    FieldLineEdit& operator=(FieldLineEdit&& other) = delete;
+//    FieldLineEdit& operator=(const FieldLineEdit& other);
 
-protected:
+//protected:
     virtual QLineEdit* copyWidget() const override;
 
 };

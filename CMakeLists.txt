@@ -38,6 +38,9 @@ add_executable(IESAA
     src/FieldTableManager.cpp
     src/FieldTableManager.h
 
+    src/DefaultFieldsCreator.cpp
+    src/DefaultFieldsCreator.h
+
     src/windows/IESAAWindow.cpp
     src/windows/IESAAWindow.h
     ui/IESAAWindow.ui
@@ -56,6 +59,8 @@ add_executable(IESAA
     src/windows/PFCreationWindow/PFCreationWindow.h
     src/windows/PFCreationWindow/FieldCreator.cpp
     src/windows/PFCreationWindow/FieldCreator.h
+    src/windows/PFCreationWindow/NamesSetsManager.cpp
+    src/windows/PFCreationWindow/NamesSetsManager.h
     ui/PFCreationWindow.ui
 
     src/windows/LogsWindow/LogsWindow.cpp

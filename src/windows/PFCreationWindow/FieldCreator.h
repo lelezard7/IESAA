@@ -27,8 +27,8 @@ public:
     void insertColumn(int i, QString name);
     void insertRow(int i, QString name);
 
-    void addColumn(QString name);
-    void addRow(QString name);
+    int addColumn(QString name);
+    int addRow(QString name);
 
     int getColumIndex(QString name) const;
     int getRowIndex(QString name) const;
@@ -55,24 +55,26 @@ public:
 
 };
 
+//FieldCreator
 
-
-class FieldCreator
+class TableManager_Profile
 {
-//    TableManager tableManager_;
+    TableManager tableManager_;
     QTableWidget* tableWidget_;
     FieldDataBase* fieldDataBase_;
 
 public:
-    FieldCreator();
-    FieldCreator(QTableWidget* tableWidget, FieldDataBase* fieldDataBase = nullptr);
-    virtual ~FieldCreator();
+    TableManager_Profile();
+    TableManager_Profile(QTableWidget* tableWidget, FieldDataBase* fieldDataBase = nullptr);
+    virtual ~TableManager_Profile();
 
     void setTableWidget(QTableWidget* tableWidget);
     QTableWidget* getTableWidget() const;
 
     void setFieldDataBase(FieldDataBase* fieldDataBase);
     FieldDataBase* getFieldDataBase() const;
+
+    TableManager& ui();
 
     bool addField(Field* field);
     bool removeField(QString name);

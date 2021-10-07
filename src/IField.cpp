@@ -90,19 +90,31 @@ drawInTableWidget(QTableWidget& tableWidget, CellCoord cellCoord) const
     if (!lineEdit)
         return false;
 
-    lineEdit->setText("sdfsd");
+//    lineEdit->setText("sdfsd");
 
     tableWidget.setCellWidget(cellCoord.row, cellCoord.column, lineEdit);
     return true;
 }
 
-FieldLineEdit&
+IFieldWidget&
 FieldLineEdit::
-operator=(const FieldLineEdit& other)
+operator=(const IFieldWidget& other)
 {
-    setWidget(other.copyWidget());
+    QLineEdit* lineEdit = static_cast<QLineEdit*>(getWidget());
+    QLineEdit* otherLineEdit = static_cast<QLineEdit*>(other.getWidget());
+
+    lineEdit->setText(otherLineEdit->text());
+
     return *this;
 }
+
+//FieldLineEdit&
+//FieldLineEdit::
+//operator=(const FieldLineEdit& other)
+//{
+//    setWidget(other.copyWidget());
+//    return *this;
+//}
 
 QLineEdit*
 FieldLineEdit::

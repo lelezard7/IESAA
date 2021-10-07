@@ -1,5 +1,7 @@
 #include "FieldCreator.h"
 
+#include <QCheckBox>
+
 
 TableManager::
 TableManager()
@@ -34,7 +36,6 @@ getSelectedCell() const
                 tableWidget_->selectedItems().at(0)->row(),
                 tableWidget_->selectedItems().at(0)->column()
     );
-
 }
 
 void
@@ -59,20 +60,22 @@ insertRow(int i, QString name)
     tableWidget_->setVerticalHeaderItem(i, item);
 }
 
-void
+int
 TableManager::
 addColumn(QString name)
 {
     int i = tableWidget_->columnCount();
     insertColumn(i, name);
+    return i;
 }
 
-void
+int
 TableManager::
 addRow(QString name)
 {
     int i = tableWidget_->rowCount();
     insertRow(i, name);
+    return i;
 }
 
 int
@@ -199,77 +202,99 @@ resetColumn(int column)
 
 
 
-FieldCreator::
-FieldCreator()
+TableManager_Profile::
+TableManager_Profile()
     : tableWidget_(nullptr)
     , fieldDataBase_(nullptr) {}
 
-FieldCreator::
-FieldCreator(QTableWidget* tableWidget, FieldDataBase* fieldDataBase)
-    : tableWidget_(tableWidget)
+TableManager_Profile::
+TableManager_Profile(QTableWidget* tableWidget, FieldDataBase* fieldDataBase)
+    : tableManager_(tableWidget)
+    , tableWidget_(tableWidget)
     , fieldDataBase_(fieldDataBase) {}
 
-FieldCreator::
-~FieldCreator() {}
+TableManager_Profile::
+~TableManager_Profile() {}
 
 void
-FieldCreator::
+TableManager_Profile::
 setTableWidget(QTableWidget* tableWidget)
 {
     tableWidget_ = tableWidget;
+    tableManager_.setTableWidget(tableWidget);
 }
 
 QTableWidget*
-FieldCreator::
+TableManager_Profile::
 getTableWidget() const
 {
     return tableWidget_;
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 setFieldDataBase(FieldDataBase* fieldDataBase)
 {
     fieldDataBase_ = fieldDataBase;
 }
 
 FieldDataBase*
-FieldCreator::
+TableManager_Profile::
 getFieldDataBase() const
 {
     return fieldDataBase_;
 }
 
-bool
-FieldCreator::
-addField(Field* field)
+TableManager&
+TableManager_Profile::
+ui()
 {
-    return fieldDataBase_->add(field);
+    return tableManager_;
 }
 
 bool
-FieldCreator::
+TableManager_Profile::
+addField(Field* field)
+{
+    if (!fieldDataBase_->add(field))
+        return false;
+
+    if (!field->fieldInfo().visibility)
+        return true;
+
+    int i = tableWidget_->rowCount();
+    tableWidget_->insertRow(i);
+    tableWidget_->setCellWidget(i, 0, new QCheckBox());
+    CellCoord d;
+    d.row = i;
+    d.column = 2;
+    field->getWidget()->drawInTableWidget(*tableWidget_, d);
+    return true;
+}
+
+bool
+TableManager_Profile::
 removeField(QString name)
 {
 
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 clearTableWidget()
 {
 
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 clearFieldDataBase()
 {
 
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 addColumn(int i, QString name)
 {
     QTableWidgetItem* item = new QTableWidgetItem;
@@ -280,7 +305,7 @@ addColumn(int i, QString name)
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 addColumn(QString name)
 {
     int i = tableWidget_->columnCount();
@@ -288,7 +313,7 @@ addColumn(QString name)
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 addRow(int i, QString name)
 {
     QTableWidgetItem* item = new QTableWidgetItem;
@@ -299,7 +324,7 @@ addRow(int i, QString name)
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 addRow(QString name)
 {
     int i = tableWidget_->rowCount();
@@ -307,14 +332,14 @@ addRow(QString name)
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 refresh()
 {
     tableWidget_->clear();
 }
 
 void
-FieldCreator::
+TableManager_Profile::
 addFieldToTableWidget()
 {
 

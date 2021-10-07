@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>IESAA | Создание поля профиля</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-color: #f5f5f5;
+}</string>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -22,7 +27,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit">
        <property name="placeholderText">
-        <string>Название</string>
+        <string>Название поля</string>
        </property>
       </widget>
      </item>
@@ -41,6 +46,9 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="minimumSize">
         <size>
          <width>130</width>
