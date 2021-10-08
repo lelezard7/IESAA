@@ -5,6 +5,7 @@
 
 #include <QLineEdit>
 #include <QString>
+#include <QWidget>
 
 
 class FieldLineEdit : public IFieldWidget
@@ -34,10 +35,13 @@ public:
     virtual QColor getBkColor() const override;
 
     virtual void reset() override;
-
+    virtual bool associateWith(QWidget* widget) override;
 
     bool setText(const QString& text);
     QString getText() const;
+
+protected slots:                                   //TODO: Возможно нужно сделать public. Проверить.
+    void event_textChanged(const QString &text);
 
 };
 

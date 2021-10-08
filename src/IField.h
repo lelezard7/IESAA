@@ -51,14 +51,16 @@ class Field
 
 public:
     Field();
-    Field(std::string_view name, IFieldWidget* widget, FieldInfo fieldInfo = FieldInfo());
+    Field(const QString& name, IFieldWidget* widget, FieldInfo fieldInfo = FieldInfo());
     virtual ~Field();
 
     bool setWidget(IFieldWidget* widget);
     IFieldWidget* getWidget() const;
 
-    void setName(std::string_view name);
+    void setName(const QString& name);
     QString getName() const;
+
+    Field* copy() const;
 
     void setFieldInfo(const FieldInfo& fieldInfo);
     FieldInfo getFieldInfo() const;

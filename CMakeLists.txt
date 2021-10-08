@@ -71,6 +71,8 @@ add_executable(IESAA
 
     src/windows/SettingsWindow/SettingsWindow.cpp
     src/windows/SettingsWindow/SettingsWindow.h
+    src/windows/SettingsWindow/FieldsSettingsHelper.cpp
+    src/windows/SettingsWindow/FieldsSettingsHelper.h
     ui/SettingsWindow.ui
 
     src/windows/PFCreationWindow/PFCreationWindow.cpp

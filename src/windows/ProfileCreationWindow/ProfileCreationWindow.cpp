@@ -68,7 +68,7 @@ ProfileCreationWindow(
         return;
     }
 
-    Profile* profile = profileDataBase_->findById(id);
+    Profile* profile = profileDataBase_->getElementById(id);
 
     if (!profile) {                                                //TODO: Проверить на утечку памяти.
         QMessageBox messageBox(
@@ -132,5 +132,5 @@ on_buttonBox_accepted()
     if (profileCreationHelper_.isEdit())
         return;
 
-    profileDataBase_->add(profileCreationHelper_.getProfile());
+    profileDataBase_->addElement(profileCreationHelper_.getProfile());
 }

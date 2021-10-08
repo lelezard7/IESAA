@@ -20,8 +20,8 @@ Field()
     : widget_(nullptr) {}
 
 Field::
-Field(std::string_view name, IFieldWidget* widget, FieldInfo fieldInfo)
-    : name_     (name.data())
+Field(const QString& name, IFieldWidget* widget, FieldInfo fieldInfo)
+    : name_     (name)
     , widget_   (widget)
     , fieldInfo_(fieldInfo) {}
 
@@ -55,9 +55,9 @@ getWidget() const
 
 void
 Field::
-setName(std::string_view name)
+setName(const QString& name)
 {
-    name_ = name.data();
+    name_ = name;
 }
 
 QString
@@ -65,6 +65,17 @@ Field::
 getName() const
 {
     return name_;
+}
+
+Field*
+Field::
+copy() const
+{
+    Field* field = new Field;
+    field->name_ = name_;
+    field->widget_ = widget_->copy();
+    field->fieldInfo_ = fieldInfo_;
+    return field;
 }
 
 void

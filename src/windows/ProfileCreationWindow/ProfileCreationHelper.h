@@ -10,7 +10,7 @@
 class ProfileCreationHelper
 {
     QTableWidget* tableWidget_;
-    FieldDataBase* fieldDataBase_;
+    FieldDataBase* defaultFieldDataBase_;
     Profile* profile_;
 
     bool isEdit_;
@@ -31,7 +31,6 @@ public:
 
     bool addField(Field* field);
     bool addFieldToProfile(Field* field);
-    bool addFieldToDefaultField(Field* field);
 
     bool removeField(const QString& name);
 

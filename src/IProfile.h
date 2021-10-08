@@ -12,7 +12,7 @@ class Profile
 {
     ID id_;
 
-    QVector<Field*> fields_;  //TODO: Поменять на список
+    QVector<Field*> fields_;  //TODO: Поменять на список, так как часто нужно менять элементы местами.
 
 public:
     Profile();
@@ -23,12 +23,16 @@ public:
 
     bool addField(Field* field);
 
-    Field* getField(QString name) const;
+    Field* getField(const QString& name) const;
     Field* getField(size_t i) const;
 
-    void clear();
+    QString getFieldName(size_t i) const;
+    size_t fieldsCount() const;
 
-    qsizetype fieldsCount() const;
+    Profile* copy() const;
+    Field* copyField(const QString& name) const;
+
+    void clear();
 
     bool swap(size_t value1, size_t value2);
     bool move(size_t value, size_t target);

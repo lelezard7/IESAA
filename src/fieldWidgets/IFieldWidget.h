@@ -4,8 +4,10 @@
 #include <QWidget>
 
 
-class IFieldWidget
+class IFieldWidget : public QWidget
 {
+    Q_OBJECT
+
 public:
     virtual ~IFieldWidget() = default;
 
@@ -24,6 +26,7 @@ public:
     virtual QColor getBkColor() const = 0;
 
     virtual void reset() = 0;
+    virtual bool associateWith(QWidget* widget) = 0;
 
     virtual IFieldWidget& operator=(IFieldWidget&& other) = delete;
     virtual IFieldWidget& operator=(const IFieldWidget& other) = delete;

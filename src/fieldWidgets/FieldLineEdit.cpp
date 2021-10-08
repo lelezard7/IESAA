@@ -54,7 +54,7 @@ copy() const
         return nullptr;
 
     FieldLineEdit* newFieldLineEdit = new FieldLineEdit;
-    newFieldLineEdit->setWidget(copyWidget());
+    newFieldLineEdit->lineEdit_ = copyWidget();
     return newFieldLineEdit;
 }
 
@@ -69,7 +69,7 @@ copyWidget() const
     QLineEdit* newLineEdit = new QLineEdit;
 
     newLineEdit->setText(lineEdit->text());
-    newLineEdit->setStyleSheet(lineEdit->styleSheet());
+//    newLineEdit->setStyleSheet(lineEdit->styleSheet());
 
     return newLineEdit;
 }
@@ -118,6 +118,16 @@ reset()
 
 bool
 FieldLineEdit::
+associateWith(QWidget* widget)
+{
+    QLineEdit* lineEdit = static_cast<QLineEdit*>(widget);
+
+    connect(lineEdit, &QLineEdit::textChanged, this, &FieldLineEdit::event_textChanged);
+    return true;
+}
+
+bool
+FieldLineEdit::
 setText(const QString& text)
 {
     if (!lineEdit_)
@@ -136,3 +146,23 @@ getText() const
 
     return lineEdit_->text();
 }
+
+void
+FieldLineEdit::
+event_textChanged(const QString& text)
+{
+    lineEdit_->setText(text);
+}
+
+
+
+
+
+
+
+//void
+//FieldLineEdit::
+//textChanged(const QString& text)
+//{
+////    lineEdit_->
+//}

@@ -56,7 +56,7 @@ on_buttonBox_accepted()
     }
 
     field->setWidget(fieldWidget);
-    field->setName(ui_->lineEdit->text().toStdString());
+    field->setName(ui_->lineEdit->text());
 
 
     if (!(profileCreationHelper_->*addField_)(field))

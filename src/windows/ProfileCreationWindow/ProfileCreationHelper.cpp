@@ -7,13 +7,13 @@
 ProfileCreationHelper::
 ProfileCreationHelper()
     : tableWidget_  (nullptr)
-    , fieldDataBase_(nullptr)
+    , defaultFieldDataBase_(nullptr)
     , profile_      (nullptr) {}
 
 ProfileCreationHelper::
 ProfileCreationHelper(QTableWidget* tableWidget, FieldDataBase* fieldDataBase, Profile* profile)
     : tableWidget_  (tableWidget)
-    , fieldDataBase_(fieldDataBase)
+    , defaultFieldDataBase_(fieldDataBase)
     , profile_      (profile) {}
 
 ProfileCreationHelper::
@@ -37,14 +37,14 @@ void
 ProfileCreationHelper::
 setFieldDataBase(FieldDataBase* fieldDataBase)
 {
-    fieldDataBase_ = fieldDataBase;
+    defaultFieldDataBase_ = fieldDataBase;
 }
 
 FieldDataBase*
 ProfileCreationHelper::
 getFieldDataBase() const
 {
-    return fieldDataBase_;
+    return defaultFieldDataBase_;
 }
 
 void
@@ -72,7 +72,7 @@ addField(Field* field)
         return false;
 
     // add уже проверяет поля на повторение имен.
-    if (!fieldDataBase_->add(field))
+    if (!defaultFieldDataBase_->addElement(field->copy()))
         return false;
 
     // addField уже проверяет поля на повторение имен.
@@ -85,8 +85,11 @@ addField(Field* field)
     int i = tableWidget_->rowCount();
     tableWidget_->insertRow(i);
 
+    QWidget* newWidget = field->getWidget()->copyWidget();
+    field->getWidget()->associateWith(newWidget);
+
     tableWidget_->setCellWidget(i, 0, new QCheckBox());
-    tableWidget_->setCellWidget(i, 2, field->getWidget()->copyWidget());
+    tableWidget_->setCellWidget(i, 2, newWidget);
     tableWidget_->setItem(i, 1, new QTableWidgetItem(field->getName()));
     return true;
 }
@@ -111,34 +114,11 @@ addFieldToProfile(Field* field)
     int i = tableWidget_->rowCount();
     tableWidget_->insertRow(i);
 
-    tableWidget_->setCellWidget(i, 0, new QCheckBox());
-    tableWidget_->setCellWidget(i, 2, field->getWidget()->copyWidget());
-    tableWidget_->setItem(i, 1, new QTableWidgetItem(field->getName()));
-    return true;
-}
-
-bool
-ProfileCreationHelper::
-addFieldToDefaultField(Field* field)
-{
-    if (!field)
-        return false;
-
-    if (tableWidget_->columnCount() < 3)
-        return false;
-
-    // add уже проверяет поля на повторение имен.
-    if (!fieldDataBase_->add(field))
-        return false;
-
-    if (!field->fieldInfo().visibility)
-        return true;
-
-    int i = tableWidget_->rowCount();
-    tableWidget_->insertRow(i);
+    QWidget* newWidget = field->getWidget()->copyWidget();
+    field->getWidget()->associateWith(newWidget);
 
     tableWidget_->setCellWidget(i, 0, new QCheckBox());
-    tableWidget_->setCellWidget(i, 2, field->getWidget()->copyWidget());
+    tableWidget_->setCellWidget(i, 2, newWidget);
     tableWidget_->setItem(i, 1, new QTableWidgetItem(field->getName()));
     return true;
 }
@@ -186,29 +166,17 @@ bool
 ProfileCreationHelper::
 showDefaultFields()
 {
+    size_t fieldDataBaseSize = defaultFieldDataBase_->size();
 
-
-
-
-
-
-
-
-
-
-
-
-    qDebug() << "Size: " << fieldDataBase_->size();
-
-    for (qsizetype i = 0; i < fieldDataBase_->size(); ++i) {
+    for (size_t i = 0; i < fieldDataBaseSize; ++i) {
         int rowCount = tableWidget_->rowCount();
         tableWidget_->insertRow(rowCount);
 
-        qDebug() << "RowCount: " << tableWidget_->rowCount();
-
         tableWidget_->setCellWidget(rowCount, 0, new QCheckBox());
-        tableWidget_->setCellWidget(rowCount, 2, fieldDataBase_->get(i)->getWidget()->copyWidget());
-        tableWidget_->setItem(rowCount, 1, new QTableWidgetItem(fieldDataBase_->get(i)->getName()));
+        tableWidget_->setCellWidget(rowCount, 2, defaultFieldDataBase_->getElement(i)->getWidget()->copyWidget());
+        tableWidget_->setItem(rowCount, 1, new QTableWidgetItem(defaultFieldDataBase_->getElement(i)->getName()));
+
+        profile_->addField(defaultFieldDataBase_->copyElement(i));
     }
 
     return true;
@@ -218,5 +186,16 @@ bool
 ProfileCreationHelper::
 showProfileFields()
 {
+    size_t fieldsCount = profile_->fieldsCount();
+
+    for (size_t i = 0; i < fieldsCount; ++i) {
+        int rowCount = tableWidget_->rowCount();
+        tableWidget_->insertRow(rowCount);
+
+        tableWidget_->setCellWidget(rowCount, 0, new QCheckBox());
+        tableWidget_->setCellWidget(rowCount, 2, profile_->getField(i)->getWidget()->copyWidget());
+        tableWidget_->setItem(rowCount, 1, new QTableWidgetItem(profile_->getField(i)->getName()));
+    }
+
     return true;
 }

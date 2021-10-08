@@ -256,7 +256,7 @@ bool
 TableManager_Profile::
 addField(Field* field)
 {
-    if (!fieldDataBase_->add(field))
+    if (!fieldDataBase_->addElement(field))
         return false;
 
     if (!field->fieldInfo().visibility)
@@ -265,11 +265,7 @@ addField(Field* field)
     int i = tableWidget_->rowCount();
     tableWidget_->insertRow(i);
     tableWidget_->setCellWidget(i, 0, new QCheckBox());
-//    CellCoord d;
-//    d.row = i;
-//    d.column = 2;
     tableWidget_->setCellWidget(i, 2, field->getWidget()->copyWidget());
-//    field->getWidget()->drawInTableWidget(*tableWidget_, d);
     return true;
 }
 

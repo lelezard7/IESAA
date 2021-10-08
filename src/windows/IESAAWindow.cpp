@@ -138,7 +138,10 @@ void
 IESAAWindow::
 on_action_Settings_triggered()
 {
-    SettingsWindow settingsWindow(this);
+    SettingsWindow settingsWindow(
+                &defaultFieldsCreator_,
+                &defaultFieldDataBase_,
+                this);
     settingsWindow.exec();
 }
 
@@ -182,7 +185,7 @@ on_action_NewGroup_triggered()
                 namesSetsManager_,
                 defaultFieldsCreator_,
                 defaultFieldDataBase_.getValue(ProfileCategory_Groups),
-                1,
+                ID_Null,
                 profileDataBaseManager_.getValue(ProfileCategory_Groups),
                 this);
     clientCreationWindow.exec();

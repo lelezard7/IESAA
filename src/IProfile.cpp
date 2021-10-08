@@ -16,6 +16,8 @@ Profile::
 
     for (qsizetype i = 0; i < fieldsSize; ++i)
         delete fields_[i];
+
+    fields_.clear();
 }
 
 void
@@ -45,7 +47,7 @@ addField(Field* field)
 
 Field*
 Profile::
-getField(QString name) const
+getField(const QString& name) const
 {
     auto it = std::find_if(fields_.begin(), fields_.end(), [name](Field* const& field) {
               return name == field->getName();
@@ -67,6 +69,55 @@ getField(size_t i) const
     return fields_[i];
 }
 
+QString
+Profile::
+getFieldName(size_t i) const
+{
+    if (i >= static_cast<size_t>(fields_.size()))
+        return "";
+
+    return fields_[i]->getName();
+}
+
+size_t
+Profile::
+fieldsCount() const
+{
+    return fields_.size();
+}
+
+Profile*
+Profile::
+copy() const
+{
+    Profile* newProfile = new Profile;
+    newProfile->id_ = id_;
+
+    qsizetype fieldsSize = fields_.size();
+
+    for (qsizetype i = 0; i < fieldsSize; ++i)
+        newProfile->addField(fields_[i]->copy());
+
+    return newProfile;
+}
+
+Field*
+Profile::
+copyField(const QString& name) const
+{
+    if (name == "")
+        return nullptr;
+
+    auto it = std::find_if(fields_.begin(), fields_.end(), [name](Field* const& field) {
+              return name == field->getName();
+    });
+
+    if (it == fields_.end())
+        return nullptr;
+
+    return (*it)->copy();
+}
+
 void
 Profile::
 clear()
@@ -77,13 +128,6 @@ clear()
         delete fields_[i];
 
     fields_.clear();
-}
-
-qsizetype
-Profile::
-fieldsCount() const
-{
-    return fields_.size();
 }
 
 bool

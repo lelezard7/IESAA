@@ -19,13 +19,14 @@ public:
     LocalDataBase();
     virtual ~LocalDataBase();
 
-    virtual bool add(T* value);
-    virtual T* get(size_t i) const;
+    virtual bool addElement(T* value);
+    virtual T* getElement(size_t i) const;
+    virtual T* copyElement(size_t i) const;
 
-    bool remove(size_t i);
-    void clear();                           //TODO: В ProfileDataBase не освобождаются ID.
+    virtual bool remove(size_t i);
+    virtual void clear();
 
-    qsizetype size() const;
+    size_t size() const;
 
 };
 
@@ -38,10 +39,17 @@ public:
     ProfileDataBase();
     virtual ~ProfileDataBase();
 
-    virtual bool add(Profile* profile) override;
 
+    virtual bool addElement(Profile* profile) override;
+    virtual Profile* copyElement(size_t i) const override;
+
+    virtual bool remove(size_t i) override;
+    virtual void clear() override;
+
+
+    Profile* getElementById(ID id) const;
+    Profile* copyElementById(ID id) const;
     bool removeById(ID id);
-    Profile* findById(ID id) const;
 
 };
 
@@ -52,10 +60,14 @@ public:
     FieldDataBase();
     virtual ~FieldDataBase();
 
-    virtual bool add(Field* field) override;
 
-    bool removeByName(QString name);
-    Field* findByName(QString name) const;
+    virtual bool addElement(Field* field) override;
+    virtual Field* copyElement(size_t i) const override;
+
+
+    Field* copyElementByName(const QString& name) const;
+    bool removeByName(const QString& name);
+    Field* findByName(const QString& name) const;
 
 };
 
