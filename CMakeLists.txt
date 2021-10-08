@@ -27,6 +27,19 @@ add_executable(IESAA
     src/IProfile.cpp
     src/IProfile.h
 
+    src/FieldWidgets.h
+    src/FieldWidgets.cpp
+
+    src/AssociativePair.inl
+    src/AssociativePair.h
+
+    src/DefaultFieldDataBase.cpp
+    src/DefaultFieldDataBase.h
+
+    src/FieldWidgets/IFieldWidget.h
+    src/FieldWidgets/FieldLineEdit.cpp
+    src/FieldWidgets/FieldLineEdit.h
+
     src/IField.cpp
     src/IField.inl
     src/IField.h
@@ -40,6 +53,11 @@ add_executable(IESAA
 
     src/DefaultFieldsCreator.cpp
     src/DefaultFieldsCreator.h
+
+    src/FieldCreator.cpp
+    src/FieldCreator.h
+    src/NamesSetsManager.cpp
+    src/NamesSetsManager.h
 
     src/windows/IESAAWindow.cpp
     src/windows/IESAAWindow.h
@@ -57,10 +75,8 @@ add_executable(IESAA
 
     src/windows/PFCreationWindow/PFCreationWindow.cpp
     src/windows/PFCreationWindow/PFCreationWindow.h
-    src/windows/PFCreationWindow/FieldCreator.cpp
-    src/windows/PFCreationWindow/FieldCreator.h
-    src/windows/PFCreationWindow/NamesSetsManager.cpp
-    src/windows/PFCreationWindow/NamesSetsManager.h
+    src/windows/PFCreationWindow/PFCreationHelper.cpp
+    src/windows/PFCreationWindow/PFCreationHelper.h
     ui/PFCreationWindow.ui
 
     src/windows/LogsWindow/LogsWindow.cpp
@@ -73,6 +89,8 @@ add_executable(IESAA
 
     src/windows/ProfileCreationWindow/ProfileCreationWindow.cpp
     src/windows/ProfileCreationWindow/ProfileCreationWindow.h
+    src/windows/ProfileCreationWindow/ProfileCreationHelper.cpp
+    src/windows/ProfileCreationWindow/ProfileCreationHelper.h
     ui/ProfileCreationWindow.ui
 
     src/windows/GroupManagementWindow/GroupManagementWindow.cpp

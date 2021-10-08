@@ -3,7 +3,8 @@
 
 ProfileDataBase::
 ProfileDataBase()
-    : LocalDataBase<Profile>() {}
+    : LocalDataBase<Profile>()
+    , idManager_(0, 1){}
 
 ProfileDataBase::
 ~ProfileDataBase() {}
@@ -15,9 +16,14 @@ add(Profile* profile)
     if (!profile)
         return false;
 
-    if (findById(profile->getId()))
-        return false;
+    if (profile->getId() != ID_Null) {
+        if (findById(profile->getId()))
+            return false;
 
+        elements_.push_back(profile);
+    }
+
+    profile->setId(*idManager_.getFreeId());
     elements_.push_back(profile);
     return true;
 }
@@ -26,13 +32,17 @@ bool
 ProfileDataBase::
 removeById(ID id)
 {
-    auto it = std::find_if(elements_.cbegin(), elements_.cend(), [id](Profile* const& profile) {
+    if (id == ID_Null)
+        return false;
+
+    auto it = std::find_if(elements_.begin(), elements_.end(), [id](Profile* const& profile) {
               return id == profile->getId();
     });
 
-    if (it == elements_.cend())
+    if (it == elements_.end())
         return false;
 
+    idManager_.free((*it)->getId());
     delete *it;
     elements_.erase(it);
 
@@ -108,125 +118,6 @@ findByName(QString name) const
 }
 
 
-
-
-
-
-
-
-
-
-
-DefaultFieldManager::
-DefaultFieldManager() {}
-
-DefaultFieldManager::
-~DefaultFieldManager()
-{
-    qsizetype dbSize = db_.size();
-
-    for (qsizetype i = 0; i < dbSize; ++i)
-        delete db_[i].second;
-}
-
-bool
-DefaultFieldManager::
-createCategory(QString name)
-{
-    if (name == "")            //TODO: проверять везде.
-        return false;
-
-    if (find(name))
-        return false;
-
-    db_.push_back(std::make_pair(std::move(name), new FieldDataBase));
-    return true;
-}
-
-bool
-DefaultFieldManager::
-deleteCategory(QString name)
-{
-    if (name == "")
-        return false;
-
-    auto it = std::find_if(db_.cbegin(), db_.cend(), [name](const Category& category) {
-              return name == category.first;
-    });
-
-    if (it == db_.cend())
-        return false;
-
-    delete it->second;
-    db_.erase(it);
-    return true;
-}
-
-DefaultFieldManager::Category
-DefaultFieldManager::
-getCategory(size_t i) const
-{
-    if (i >= static_cast<size_t>(db_.size()))
-        return Category();
-
-    return db_[i];
-}
-
-FieldDataBase*
-DefaultFieldManager::
-find(QString name) const
-{
-    if (name == "")
-        return nullptr;
-
-    auto it = std::find_if(db_.cbegin(), db_.cend(), [name](const Category& category) {
-              return name == category.first;
-    });
-
-    if (it == db_.cend())
-        return nullptr;
-
-    return it->second;
-}
-
-size_t
-DefaultFieldManager::
-size() const
-{
-    return db_.size();
-}
-
-bool
-DefaultFieldManager::
-remove(QString name)
-{
-    if (name == "")
-        return false;
-
-    auto it = std::find_if(db_.cbegin(), db_.cend(), [name](const Category& category) {
-              return name == category.first;
-    });
-
-    if (it == db_.cend())
-        return false;
-
-    delete it->second;
-    db_.erase(it);
-
-    return true;
-}
-
-void
-DefaultFieldManager::
-clear()
-{
-    qsizetype dbSize = db_.size();
-
-    for (qsizetype i = 0; i < dbSize; ++i)
-        delete db_[i].second;
-
-    db_.clear();
-}
 
 
 

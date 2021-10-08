@@ -5,44 +5,16 @@
 #ifndef PFCREATIONWINDOW_H_
 #define PFCREATIONWINDOW_H_
 
-#include "../PFCreationWindow/FieldCreator.h"
-#include "../PFCreationWindow/NamesSetsManager.h"
+#include "FieldCreator.h"
+#include "PFCreationHelper.h"
+#include "DefaultFieldsCreator.h"
+#include "NamesSetsManager.h"
+#include "../ProfileCreationWindow/ProfileCreationHelper.h"
 
 #include <QDialog>
 #include <QComboBox>
 
-//#include "../../LocalDB.h"
-//#include "FieldCreator.h"
-
-
-
-
-
-
-
-
-
-
-
-
-class FieldCreator
-{
-    QVector<std::pair<QString, IFieldWidget*>> assoc_;
-    QComboBox* comboBox_;
-
-public:
-    FieldCreator();
-    FieldCreator(QComboBox* comboBox);
-    virtual ~FieldCreator();
-
-    void setComboBox(QComboBox* comboBox);
-
-    bool createAssociation(QString name, IFieldWidget* widget);
-    IFieldWidget* getWidget(QString name);
-    IFieldWidget* widget(QString name);
-};
-
-
+typedef bool (ProfileCreationHelper::*AddField)(Field*);
 
 
 namespace Ui
@@ -57,12 +29,23 @@ class PFCreationWindow : public QDialog
 
 private:
     Ui::PFCreationWindow* ui_;
-    TableManager_Profile* fieldCreator_;
-    FieldCreator fieldAssoc_;
-    NamesSetsManager namesSetsManager_;
+
+    PFCreationHelper pf_creationHelper_;
+
+    NamesSetsManager& namesSetsManager_;
+    DefaultFieldsCreator& defaultFieldsCreator_;
+
+    AddField addField_;
+    ProfileCreationHelper* profileCreationHelper_;
+
 
 public:
-    explicit PFCreationWindow(TableManager_Profile* fieldCreator, QWidget* parent = nullptr);
+    explicit PFCreationWindow(
+            NamesSetsManager& namesSetsManager,
+            DefaultFieldsCreator& defaultFieldsCreator,
+            ProfileCreationHelper* profileCreationHelper,
+            AddField addField,
+            QWidget* parent = nullptr);
     ~PFCreationWindow();
 
 private slots:

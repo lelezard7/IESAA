@@ -22,6 +22,7 @@
 
 
 
+
 IESAAWindow::
 IESAAWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -29,9 +30,16 @@ IESAAWindow(QWidget* parent)
 {
     ui_->setupUi(this);
 
-    defaultFieldManager.createCategory(ProfileCategory_Clients);
-    defaultFieldManager.createCategory(ProfileCategory_Staff);
-    defaultFieldManager.createCategory(ProfileCategory_Groups);
+    defaultFieldDataBase_.createAssociation(ProfileCategory_Clients, new FieldDataBase);
+    defaultFieldDataBase_.createAssociation(ProfileCategory_Staff, new FieldDataBase);
+    defaultFieldDataBase_.createAssociation(ProfileCategory_Groups, new FieldDataBase);
+
+    profileDataBaseManager_.createAssociation(ProfileCategory_Clients, new ProfileDataBase);
+    profileDataBaseManager_.createAssociation(ProfileCategory_Staff, new ProfileDataBase);
+    profileDataBaseManager_.createAssociation(ProfileCategory_Groups, new ProfileDataBase);
+
+    initNamesSets();
+    initDefaultFieldsWidgets();
 
     //   === Для демонстрации клиенту ===
 
@@ -154,19 +162,31 @@ void
 IESAAWindow::
 on_action_NewClient_triggered()
 {
-    ProfileCreationWindow clientCreationWindow(defaultFieldManager.find(ProfileCategory_Clients), this);
+    ProfileCreationWindow clientCreationWindow(
+                namesSetsManager_,
+                defaultFieldsCreator_,
+                defaultFieldDataBase_.getValue(ProfileCategory_Clients),
+                ID_Null,
+                profileDataBaseManager_.getValue(ProfileCategory_Clients),
+                this);
     clientCreationWindow.exec();
-
-//    auto dd = getStaff("p1");
-//    auto gg = dd->getField<int, int>(FIELD_DATA_TYPE_NAME(int, int));
 }
 
 void
 IESAAWindow::
 on_action_NewGroup_triggered()
 {
-    ProfileCreationWindow clientCreationWindow(defaultFieldManager.find(ProfileCategory_Groups), this);
+    qDebug() << "Field count: " << profileDataBaseManager_.getValue(ProfileCategory_Groups)->size();
+
+    ProfileCreationWindow clientCreationWindow(
+                namesSetsManager_,
+                defaultFieldsCreator_,
+                defaultFieldDataBase_.getValue(ProfileCategory_Groups),
+                1,
+                profileDataBaseManager_.getValue(ProfileCategory_Groups),
+                this);
     clientCreationWindow.exec();
+    qDebug() << "Field count: " << profileDataBaseManager_.getValue(ProfileCategory_Groups)->size();
 }
 
 void
@@ -200,4 +220,29 @@ fff(const QPoint &pos)
 {
     menu_->popup(mapToGlobal(pos));
     ui_->infoBar->setText("dddddd");
+}
+
+void
+IESAAWindow::
+initNamesSets()
+{
+    namesSetsManager_.addNamesSet("Текст",          "Значение");
+    namesSetsManager_.addNamesSet("Текст",          "Лист");
+    namesSetsManager_.addNamesSet("Число",          "Значение");
+    namesSetsManager_.addNamesSet("Логический тип", "Значение");
+    namesSetsManager_.addNamesSet("Валюта",         "Значение");
+    namesSetsManager_.addNamesSet("Время",          "Значение");
+    namesSetsManager_.addNamesSet("Дата",           "Значение");
+    namesSetsManager_.addNamesSet("Дата и время",   "Значение");
+}
+
+void
+IESAAWindow::
+initDefaultFieldsWidgets()
+{
+    QLineEdit* le = new QLineEdit();
+    IFieldWidget* widget = new FieldLineEdit;
+    widget->setWidget(le);
+
+    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Текст", "Значение"), widget);
 }

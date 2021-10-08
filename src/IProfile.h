@@ -1,9 +1,74 @@
 #ifndef IPROFILE_H_
 #define IPROFILE_H_
 
-//#include "IField.h"
+#include "IField.h"
 
 #include <QVector>
+
+
+
+
+class Profile
+{
+    ID id_;
+
+    QVector<Field*> fields_;  //TODO: Поменять на список
+
+public:
+    Profile();
+    virtual ~Profile();
+
+    void setId(ID id);
+    ID getId() const;
+
+    bool addField(Field* field);
+
+    Field* getField(QString name) const;
+    Field* getField(size_t i) const;
+
+    void clear();
+
+    qsizetype fieldsCount() const;
+
+    bool swap(size_t value1, size_t value2);
+    bool move(size_t value, size_t target);
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //#define FindByName(Name) \
 

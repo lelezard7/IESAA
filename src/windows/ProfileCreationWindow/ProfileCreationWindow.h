@@ -1,12 +1,15 @@
 #ifndef PROFILECREATIONWINDOW_H_
 #define PROFILECREATIONWINDOW_H_
 
+#include "IESAA.h"
 #include <QDialog>
 #include <QString>
 #include <memory>
 #include "../../LocalDB.h"
-#include "../PFCreationWindow/FieldCreator.h"
+#include "../../FieldCreator.h"
 #include "../PFCreationWindow/PFCreationWindow.h"
+#include "ProfileCreationHelper.h"
+#include "IProfile.h"
 
 
 
@@ -34,17 +37,26 @@ class ProfileCreationWindow : public QDialog
 
 private:
     Ui::ProfileCreationWindow* ui_;
-    TableManager_Profile fieldCreator_;
+    ProfileCreationHelper profileCreationHelper_;
+
+    NamesSetsManager& namesSetsManager_;
+    DefaultFieldsCreator& defaultFieldsCreator_;
+    ProfileDataBase* profileDataBase_;
 
 
 
-
-    PFCreationWindow* pf_creationWindow_;
+//    PFCreationWindow* pf_creationWindow_;
 
 //    std::unique_ptr<IProfile> profile_;
 
 public:
-    explicit ProfileCreationWindow(FieldDataBase* defaultDB, QWidget* parent = nullptr);
+    explicit ProfileCreationWindow(
+            NamesSetsManager& namesSetsManager,
+            DefaultFieldsCreator& defaultFieldsCreator,
+            FieldDataBase* defaultDB,
+            ID id,
+            ProfileDataBase* profileDataBase,
+            QWidget* parent = nullptr);
     ~ProfileCreationWindow();
 
 private slots:

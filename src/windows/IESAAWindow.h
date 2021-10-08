@@ -3,6 +3,10 @@
 
 #include "StaffWindow/StaffWindow.h"
 #include "LocalDB.h"
+#include "NamesSetsManager.h"
+#include "DefaultFieldsCreator.h"
+#include "DefaultFieldDataBase.h"
+#include "AssociativePair.h"
 
 #include <QMainWindow>
 #include <QMenu>
@@ -24,7 +28,11 @@ private:
     StaffWindow* staffWindow_;
     QMenu* menu_;
 
-    DefaultFieldManager defaultFieldManager;
+    NamesSetsManager namesSetsManager_;
+
+    DefaultFieldsCreator defaultFieldsCreator_;
+    DefaultFieldDataBase defaultFieldDataBase_;
+    ProfileDataBaseManager profileDataBaseManager_;
 
 public:
     IESAAWindow(QWidget* parent = nullptr);
@@ -41,6 +49,11 @@ private slots:
     void on_action_Statistics_triggered();
 
     void fff(const QPoint &pos);
+
+private:
+    void initNamesSets();
+    void initDefaultFieldsWidgets();
+
 };
 
 #endif

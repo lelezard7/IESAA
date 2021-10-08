@@ -2,6 +2,8 @@
 #define LOCALDB_H_
 
 #include "IField.h"
+#include "IProfile.h"
+#include "../libs/ONF_v0.0.0/include/IdManagement.h"
 
 // qsizetype
 #include <QtGlobal>
@@ -21,7 +23,7 @@ public:
     virtual T* get(size_t i) const;
 
     bool remove(size_t i);
-    void clear();
+    void clear();                           //TODO: В ProfileDataBase не освобождаются ID.
 
     qsizetype size() const;
 
@@ -30,6 +32,8 @@ public:
 
 class ProfileDataBase : public LocalDataBase<Profile>
 {
+    ONF::RangeIdManager<ID, long long> idManager_;
+
 public:
     ProfileDataBase();
     virtual ~ProfileDataBase();
@@ -62,30 +66,6 @@ public:
 
 
 
-
-
-class DefaultFieldManager
-{
-    using Category = std::pair<QString, FieldDataBase*>;
-
-private:
-    QVector<Category> db_;
-
-public:
-    DefaultFieldManager();
-    virtual ~DefaultFieldManager();
-
-    bool createCategory(QString name);
-    bool deleteCategory(QString name);
-
-    Category getCategory(size_t i) const;
-    FieldDataBase* find(QString name) const;
-    size_t size() const;
-
-    bool remove(QString name);
-    void clear();
-
-};
 
 
 
