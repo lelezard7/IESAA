@@ -114,6 +114,9 @@
                <iconset resource="../res/Res.qrc">
                 <normaloff>:/icons/black/Filter</normaloff>:/icons/black/Filter</iconset>
               </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -132,15 +135,12 @@
            </layout>
           </item>
           <item>
-           <widget class="QTableWidget" name="mainTable">
+           <widget class="MainTable" name="mainTable">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>1</horstretch>
               <verstretch>1</verstretch>
              </sizepolicy>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
             </property>
             <property name="alternatingRowColors">
              <bool>true</bool>
@@ -870,6 +870,13 @@ QMenu::item:selected {
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MainTable</class>
+   <extends>QTableWidget</extends>
+   <header>windows/MainTable.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../res/Res.qrc"/>
  </resources>

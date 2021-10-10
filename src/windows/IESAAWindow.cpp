@@ -41,53 +41,90 @@ IESAAWindow(QWidget* parent)
     initNamesSets();
     initDefaultFieldsWidgets();
 
+    mainTableHelper_.setTableWidget(ui_->mainTable);
+    mainTableHelper_.setProfileDataBaseManager(&profileDataBaseManager_);
+
+    informant_.setPushButton(ui_->pushButton);
+
+    ui_->scrollArea->hide();
+
+
+
+//    StyleSheetCreator styleSheetCreator;
+//    styleSheetCreator.setProperty("QPushButton", "background-color", "red");
+//    styleSheetCreator.setProperty("QPushButton", "color", "white");
+//    styleSheetCreator.setProperty("QPushButton", "background-color", "green");
+//    styleSheetCreator.setProperty("QPushButton::hover", "background-color", "red");
+
+//    QString str = styleSheetCreator.getStyleSheet();
+//    ui_->pushButton_3->setStyleSheet(str);
+
+
+
+
+
+
+
     //   === Для демонстрации клиенту ===
 
     ui_->infoBar->setText("Пользователь: Артемий | Права: Администратор");
 
-    ui_->mainTable->setColumnCount(11);
-    ui_->mainTable->setRowCount(30);
+//    ui_->mainTable->setColumnCount(11);
+//    ui_->mainTable->setRowCount(30);
 
-    QStringList columnTitles;
-    columnTitles << "ID" << "Артикул" << "Категория" << "Наименование" << "Цена (руб.)"
-                 << "Кол-во (шт.)" << "Материал" << "Цвет" << "Размер" << "Вес (кг.)" << "Пометка";
+//    QStringList columnTitles;
+//    columnTitles << "ID" << "Артикул" << "Категория" << "Наименование" << "Цена (руб.)"
+//                 << "Кол-во (шт.)" << "Материал" << "Цвет" << "Размер" << "Вес (кг.)" << "Пометка";
 
-    ui_->mainTable->setHorizontalHeaderLabels(columnTitles);
+//    ui_->mainTable->setHorizontalHeaderLabels(columnTitles);
 
-    QStringList content;
-    int row = 0;
-    int column = 0;
+//    QStringList content;
+//    int row = 0;
+//    int column = 0;
 
-    auto fillTableRow = [this, row, column](const QString& it) mutable {
-        QTableWidgetItem* tableItem = new QTableWidgetItem;
-        tableItem->setData(0, it);
-        ui_->mainTable->setItem(row, column, tableItem);
-        ++column;
-    };
+//    auto fillTableRow = [this, row, column](const QString& it) mutable {
+//        QTableWidgetItem* tableItem = new QTableWidgetItem;
+//        tableItem->setData(0, it);
+//        ui_->mainTable->setItem(row, column, tableItem);
+//        ++column;
+//    };
 
-    content << "11" << "MP002XM1GYPS" << "Пиджак" << "Пиджак" << "7 790" << "10" << "Шерсть"
-            << "Серый" << "50/176" << "0.015" << "Не заказывать больше";
-    std::for_each(content.begin(), content.end(), fillTableRow);
-//    ++row;
+//    content << "11" << "MP002XM1GYPS" << "Пиджак" << "Пиджак" << "7 790" << "10" << "Шерсть"
+//            << "Серый" << "50/176" << "0.015" << "Не заказывать больше";
+//    std::for_each(content.begin(), content.end(), fillTableRow);
+////    ++row;
 
-    content << "20" << "AD002EMKGHW4" << "Футболка спортивная" << "Футболка спортивная TABELA 18 JSY"
-            << "1 999" << "3" << "Полиэстер" << "Черный" << "M" << "0.005" << "";
-    std::for_each(content.begin(), content.end(), fillTableRow);
-//    ++row;
+//    content << "20" << "AD002EMKGHW4" << "Футболка спортивная" << "Футболка спортивная TABELA 18 JSY"
+//            << "1 999" << "3" << "Полиэстер" << "Черный" << "M" << "0.005" << "";
+//    std::for_each(content.begin(), content.end(), fillTableRow);
+////    ++row;
 
-    content << "4" << "15604376" << "Грунт" << "Грунт универсальный «Просто»" << "222" << "44" << ""
-            << "" << "" << "19.07" << "";
-    std::for_each(content.begin(), content.end(), fillTableRow);
+//    content << "4" << "15604376" << "Грунт" << "Грунт универсальный «Просто»" << "222" << "44" << ""
+//            << "" << "" << "19.07" << "";
+//    std::for_each(content.begin(), content.end(), fillTableRow);
 
 
-    ui_->mainTable->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
+//    ui_->mainTable->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
 
-    menu_ = new QMenu;
-    menu_->addAction("Редактировать");
-    menu_->addAction("Копировать");
-    menu_->addAction("Вырезать");
-    menu_->addAction("Вставить");
-    connect(ui_->mainTable, &QMenu::customContextMenuRequested, this, &IESAAWindow::fff);
+//    menu_ = new QMenu;
+//    menu_->addAction("Редактировать");
+//    menu_->addAction("Копировать");
+//    menu_->addAction("Вырезать");
+//    menu_->addAction("Вставить");
+//    connect(ui_->mainTable, &QMenu::customContextMenuRequested, this, &IESAAWindow::fff);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    FIELD_DATA_TYPE(int, int) ddddd;
@@ -139,6 +176,7 @@ IESAAWindow::
 on_action_Settings_triggered()
 {
     SettingsWindow settingsWindow(
+                namesSetsManager_,
                 &defaultFieldsCreator_,
                 &defaultFieldDataBase_,
                 this);
@@ -173,6 +211,8 @@ on_action_NewClient_triggered()
                 profileDataBaseManager_.getValue(ProfileCategory_Clients),
                 this);
     clientCreationWindow.exec();
+
+    mainTableHelper_.refreshClients();
 }
 
 void
@@ -231,9 +271,7 @@ initNamesSets()
 {
     namesSetsManager_.addNamesSet("Текст",          "Значение");
     namesSetsManager_.addNamesSet("Текст",          "Лист");
-    namesSetsManager_.addNamesSet("Число",          "Значение");
     namesSetsManager_.addNamesSet("Логический тип", "Значение");
-    namesSetsManager_.addNamesSet("Валюта",         "Значение");
     namesSetsManager_.addNamesSet("Время",          "Значение");
     namesSetsManager_.addNamesSet("Дата",           "Значение");
     namesSetsManager_.addNamesSet("Дата и время",   "Значение");
@@ -243,9 +281,61 @@ void
 IESAAWindow::
 initDefaultFieldsWidgets()
 {
-    QLineEdit* le = new QLineEdit();
-    IFieldWidget* widget = new FieldLineEdit;
-    widget->setWidget(le);
+    QLineEdit* lineEdit = new QLineEdit;
+    IFieldWidget* fieldLineEdit = new FieldLineEdit;
+    fieldLineEdit->setWidget(lineEdit);
+    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Текст", "Значение"), fieldLineEdit);
 
-    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Текст", "Значение"), widget);
+    ExtTextEdit* textEdit = new ExtTextEdit;
+    IFieldWidget* fieldTextEdit = new FieldTextEdit;
+    fieldTextEdit->setWidget(textEdit);
+    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Текст", "Лист"), fieldTextEdit);
+
+    QCheckBox* checkBox = new QCheckBox;
+    IFieldWidget* fieldCheckBox = new FieldCheckBox;
+    fieldCheckBox->setWidget(checkBox);
+    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Логический тип", "Значение"), fieldCheckBox);
+
+    QDateEdit* dateEdit = new QDateEdit;
+    dateEdit->setCalendarPopup(true);
+    IFieldWidget* fieldDateEdit = new FieldDateEdit;
+    fieldDateEdit->setWidget(dateEdit);
+    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Дата", "Значение"), fieldDateEdit);
+
+    QDateTimeEdit* dateTimeEdit = new QDateTimeEdit;
+    dateTimeEdit->setCalendarPopup(true);
+    dateTimeEdit->setDisplayFormat("dd.MM.yyyy HH:mm:ss");
+    IFieldWidget* fieldDateTimeEdit = new FieldDateTimeEdit;
+    fieldDateTimeEdit->setWidget(dateTimeEdit);
+    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Дата и время", "Значение"), fieldDateTimeEdit);
+
+    QTimeEdit* timeEdit = new QTimeEdit;
+    timeEdit->setCalendarPopup(true);
+    timeEdit->setDisplayFormat("HH:mm:ss");
+    IFieldWidget* fieldTimeEdit = new FieldTimeEdit;
+    fieldTimeEdit->setWidget(timeEdit);
+    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Время", "Значение"), fieldTimeEdit);
 }
+
+void
+IESAAWindow::
+on_comboBox_currentTextChanged(const QString &arg1)
+{
+//    mainTableHelper_.clear();
+//    mainTableHelper_.refresh("Клиенты");
+
+//    if (arg1 == "Клиенты")
+//        mainTableHelper_.clear();
+}
+
+
+void
+IESAAWindow::
+on_pushButton_2_clicked(bool checked)
+{
+    if (checked)
+        ui_->scrollArea->show();
+    else
+        ui_->scrollArea->hide();
+}
+

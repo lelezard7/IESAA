@@ -18,6 +18,7 @@ public:
 
     virtual IFieldWidget* copy() const = 0;
     virtual QWidget* copyWidget() const = 0;
+    virtual QWidget* associativeCopyWidget() const = 0;
 
     virtual bool setTextColor(const QColor& color) = 0;
     virtual QColor getTextColor() const = 0;
@@ -26,7 +27,7 @@ public:
     virtual QColor getBkColor() const = 0;
 
     virtual void reset() = 0;
-    virtual bool associateWith(QWidget* widget) = 0;
+    virtual bool associateWith(QWidget* widget) const = 0;
 
     virtual IFieldWidget& operator=(IFieldWidget&& other) = delete;
     virtual IFieldWidget& operator=(const IFieldWidget& other) = delete;

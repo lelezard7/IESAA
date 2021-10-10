@@ -3,11 +3,12 @@
 
 #include "IProfile.h"
 #include "LocalDB.h"
+#include "WindowHelper.h"
 
 #include <QTableWidget>
 
 
-class ProfileCreationHelper
+class ProfileCreationHelper : public WindowHelper
 {
     QTableWidget* tableWidget_;
     FieldDataBase* defaultFieldDataBase_;
@@ -29,8 +30,9 @@ public:
     void setProfile(Profile* profile);
     Profile* getProfile() const;
 
-    bool addField(Field* field);
-    bool addFieldToProfile(Field* field);
+    virtual bool addField(Field* field) override;
+    virtual bool addFieldToProfile(Field* field) override;
+    virtual bool addFieldToDefaultFields(Field* field) override;
 
     bool removeField(const QString& name);
 

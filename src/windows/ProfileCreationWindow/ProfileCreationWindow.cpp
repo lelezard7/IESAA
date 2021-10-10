@@ -22,14 +22,6 @@
 
 
 
-
-
-
-
-
-
-
-
 //static DefConvertTo(int, QSpinBox)
 //static DefConvertTo(QDate, QDateEdit)
 
@@ -106,8 +98,7 @@ on_pushButton_clicked()
     PFCreationWindow pf_creationWindow(
                 namesSetsManager_,
                 defaultFieldsCreator_,
-                &profileCreationHelper_,
-                &ProfileCreationHelper::addField,
+                createFieldReceiver(profileCreationHelper_, ProfileCreationHelper::addField),
                 this);
     pf_creationWindow.exec();
 }
@@ -119,8 +110,7 @@ on_pushButton_2_clicked()
     PFCreationWindow pf_creationWindow(
                 namesSetsManager_,
                 defaultFieldsCreator_,
-                &profileCreationHelper_,
-                &ProfileCreationHelper::addFieldToProfile,
+                createFieldReceiver(profileCreationHelper_, ProfileCreationHelper::addFieldToProfile),
                 this);
     pf_creationWindow.exec();
 }

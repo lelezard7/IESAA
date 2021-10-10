@@ -9,7 +9,7 @@ FieldLineEdit()
 FieldLineEdit::
 FieldLineEdit(QLineEdit* lineEdit)
     : IFieldWidget()
-    , lineEdit_   (lineEdit){}
+    , lineEdit_   (lineEdit) {}
 
 FieldLineEdit::
 ~FieldLineEdit()
@@ -50,7 +50,7 @@ FieldLineEdit*
 FieldLineEdit::
 copy() const
 {
-    if (!isWidgetSet())
+    if (!lineEdit_)
         return nullptr;
 
     FieldLineEdit* newFieldLineEdit = new FieldLineEdit;
@@ -69,8 +69,16 @@ copyWidget() const
     QLineEdit* newLineEdit = new QLineEdit;
 
     newLineEdit->setText(lineEdit->text());
-//    newLineEdit->setStyleSheet(lineEdit->styleSheet());
+    newLineEdit->setStyleSheet(lineEdit->styleSheet());
+    return newLineEdit;
+}
 
+QLineEdit*
+FieldLineEdit::
+associativeCopyWidget() const
+{
+    QLineEdit* newLineEdit = copyWidget();
+    associateWith(newLineEdit);
     return newLineEdit;
 }
 
@@ -85,7 +93,7 @@ setTextColor(const QColor& color)
 
 //    lineEdit->setStyleSheet("QLineEdit { background-color: yellow }");
 
-    return true;
+    return false;
 }
 
 QColor
@@ -118,7 +126,7 @@ reset()
 
 bool
 FieldLineEdit::
-associateWith(QWidget* widget)
+associateWith(QWidget* widget) const
 {
     QLineEdit* lineEdit = static_cast<QLineEdit*>(widget);
 

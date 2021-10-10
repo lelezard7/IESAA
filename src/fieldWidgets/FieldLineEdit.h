@@ -27,6 +27,7 @@ public:
 
     virtual FieldLineEdit* copy() const override;
     virtual QLineEdit* copyWidget() const override;
+    virtual QLineEdit* associativeCopyWidget() const override;
 
     virtual bool setTextColor(const QColor& color) override;
     virtual QColor getTextColor() const override;
@@ -35,7 +36,7 @@ public:
     virtual QColor getBkColor() const override;
 
     virtual void reset() override;
-    virtual bool associateWith(QWidget* widget) override;
+    virtual bool associateWith(QWidget* widget) const override;
 
     bool setText(const QString& text);
     QString getText() const;

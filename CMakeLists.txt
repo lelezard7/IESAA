@@ -27,6 +27,9 @@ add_executable(IESAA
     src/IProfile.cpp
     src/IProfile.h
 
+    src/WindowHelper.cpp
+    src/WindowHelper.h
+
     src/FieldWidgets.h
     src/FieldWidgets.cpp
 
@@ -36,9 +39,23 @@ add_executable(IESAA
     src/DefaultFieldDataBase.cpp
     src/DefaultFieldDataBase.h
 
+    src/FieldWidgets/IFieldWidget.cpp
     src/FieldWidgets/IFieldWidget.h
     src/FieldWidgets/FieldLineEdit.cpp
     src/FieldWidgets/FieldLineEdit.h
+    src/FieldWidgets/FieldTextEdit.cpp
+    src/FieldWidgets/FieldTextEdit.h
+    src/FieldWidgets/FieldCheckBox.cpp
+    src/FieldWidgets/FieldCheckBox.h
+    src/FieldWidgets/FieldDateEdit.cpp
+    src/FieldWidgets/FieldDateEdit.h
+    src/FieldWidgets/FieldDateTimeEdit.cpp
+    src/FieldWidgets/FieldDateTimeEdit.h
+    src/FieldWidgets/FieldTimeEdit.cpp
+    src/FieldWidgets/FieldTimeEdit.h
+
+    src/FieldWidgets/ExtendedWidgets/ExtTextEdit.cpp
+    src/FieldWidgets/ExtendedWidgets/ExtTextEdit.h
 
     src/IField.cpp
     src/IField.inl
@@ -47,6 +64,9 @@ add_executable(IESAA
     src/LocalDB.cpp
     src/LocalDB.inl
     src/LocalDB.h
+
+    src/StyleSheetCreator.cpp
+    src/StyleSheetCreator.h
 
     src/FieldTableManager.cpp
     src/FieldTableManager.h
@@ -61,6 +81,12 @@ add_executable(IESAA
 
     src/windows/IESAAWindow.cpp
     src/windows/IESAAWindow.h
+    src/windows/MainTableHelper.cpp
+    src/windows/MainTableHelper.h
+    src/windows/MainTable.cpp
+    src/windows/MainTable.h
+    src/windows/Informant.cpp
+    src/windows/Informant.h
     ui/IESAAWindow.ui
 
     src/windows/AuthorizationWindow/AuthorizationWindow.cpp

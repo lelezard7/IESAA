@@ -24,16 +24,19 @@
 
 SettingsWindow::
 SettingsWindow(
+        NamesSetsManager& namesSetsManager,
         DefaultFieldsCreator* defaultFieldsCreator,
         DefaultFieldDataBase* defaultFieldDataBase,
         QWidget* parent)
     : QDialog              (parent)
     , ui_                  (new Ui::SettingsWindow)
+    , namesSetsManager_    (namesSetsManager)
     , defaultFieldsCreator_(defaultFieldsCreator)
     , defaultFieldDataBase_(defaultFieldDataBase)
 {
     ui_->setupUi(this);
 
+    fieldsSettingsHelper_.setInfoLabel(ui_->label_2);
     fieldsSettingsHelper_.setTableWidget(ui_->tableWidget);
     fieldsSettingsHelper_.setDefaultFieldDataBase(defaultFieldDataBase_);
 
@@ -73,8 +76,12 @@ void
 SettingsWindow::
 on_pushButton_clicked()
 {
-//    PFCreationWindow cpf_creationWindow(nullptr, this);
-//    cpf_creationWindow.exec();
+    PFCreationWindow pf_creationWindow(
+                namesSetsManager_,
+                *defaultFieldsCreator_,
+                createFieldReceiver(fieldsSettingsHelper_, FieldsSettingsHelper::addFieldToDefaultFields),
+                this);
+    pf_creationWindow.exec();
 }
 
 void

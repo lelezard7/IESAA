@@ -9,12 +9,12 @@
 #include "PFCreationHelper.h"
 #include "DefaultFieldsCreator.h"
 #include "NamesSetsManager.h"
-#include "../ProfileCreationWindow/ProfileCreationHelper.h"
+#include "WindowHelper.h"
 
 #include <QDialog>
 #include <QComboBox>
 
-typedef bool (ProfileCreationHelper::*AddField)(Field*);
+
 
 
 namespace Ui
@@ -35,16 +35,14 @@ private:
     NamesSetsManager& namesSetsManager_;
     DefaultFieldsCreator& defaultFieldsCreator_;
 
-    AddField addField_;
-    ProfileCreationHelper* profileCreationHelper_;
+    FieldReceiver sendField;
 
 
 public:
     explicit PFCreationWindow(
             NamesSetsManager& namesSetsManager,
             DefaultFieldsCreator& defaultFieldsCreator,
-            ProfileCreationHelper* profileCreationHelper,
-            AddField addField,
+            FieldReceiver fieldReceiver,
             QWidget* parent = nullptr);
     ~PFCreationWindow();
 

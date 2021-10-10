@@ -1,12 +1,14 @@
 #ifndef SETTINGSWINDOW_H_
 #define SETTINGSWINDOW_H_
 
-#include <QDialog>
+#include "IESAA.h"
 #include "../../LocalDB.h"
-
 #include "FieldsSettingsHelper.h"
 #include "DefaultFieldsCreator.h"
+#include "../PFCreationWindow/PFCreationWindow.h"
+#include "NamesSetsManager.h"
 
+#include <QDialog>
 
 
 
@@ -27,12 +29,14 @@ class SettingsWindow : public QDialog
 private:
     Ui::SettingsWindow* ui_;
 
+    NamesSetsManager& namesSetsManager_;
     FieldsSettingsHelper fieldsSettingsHelper_;
     DefaultFieldsCreator* defaultFieldsCreator_;
     DefaultFieldDataBase* defaultFieldDataBase_;
 
 public:
     explicit SettingsWindow(
+            NamesSetsManager& namesSetsManager,
             DefaultFieldsCreator* defaultFieldsCreator,
             DefaultFieldDataBase* defaultFieldDataBase,
             QWidget* parent = nullptr);

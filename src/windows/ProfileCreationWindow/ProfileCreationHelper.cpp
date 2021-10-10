@@ -125,6 +125,13 @@ addFieldToProfile(Field* field)
 
 bool
 ProfileCreationHelper::
+addFieldToDefaultFields(Field*)
+{
+    return false;
+}
+
+bool
+ProfileCreationHelper::
 removeField(const QString& name)
 {
 
@@ -172,11 +179,13 @@ showDefaultFields()
         int rowCount = tableWidget_->rowCount();
         tableWidget_->insertRow(rowCount);
 
+        Field* field = defaultFieldDataBase_->copyElement(i);
+
         tableWidget_->setCellWidget(rowCount, 0, new QCheckBox());
-        tableWidget_->setCellWidget(rowCount, 2, defaultFieldDataBase_->getElement(i)->getWidget()->copyWidget());
+        tableWidget_->setCellWidget(rowCount, 2, field->getWidget()->associativeCopyWidget());
         tableWidget_->setItem(rowCount, 1, new QTableWidgetItem(defaultFieldDataBase_->getElement(i)->getName()));
 
-        profile_->addField(defaultFieldDataBase_->copyElement(i));
+        profile_->addField(field);
     }
 
     return true;
@@ -193,7 +202,7 @@ showProfileFields()
         tableWidget_->insertRow(rowCount);
 
         tableWidget_->setCellWidget(rowCount, 0, new QCheckBox());
-        tableWidget_->setCellWidget(rowCount, 2, profile_->getField(i)->getWidget()->copyWidget());
+        tableWidget_->setCellWidget(rowCount, 2, profile_->getField(i)->getWidget()->associativeCopyWidget());
         tableWidget_->setItem(rowCount, 1, new QTableWidgetItem(profile_->getField(i)->getName()));
     }
 

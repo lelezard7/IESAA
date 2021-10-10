@@ -15,15 +15,13 @@ PFCreationWindow::
 PFCreationWindow(
         NamesSetsManager& namesSetsManager,
         DefaultFieldsCreator& defaultFieldsCreator,
-        ProfileCreationHelper* profileCreationHelper,
-        AddField addField,
+        FieldReceiver fieldReceiver,
         QWidget* parent)
     : QDialog(parent)
     , ui_(new Ui::PFCreationWindow)
     , namesSetsManager_(namesSetsManager)
     , defaultFieldsCreator_(defaultFieldsCreator)
-    , addField_(addField)
-    , profileCreationHelper_(profileCreationHelper)
+    , sendField(fieldReceiver)
 {
     ui_->setupUi(this);
     setFixedSize(size());
@@ -59,7 +57,7 @@ on_buttonBox_accepted()
     field->setName(ui_->lineEdit->text());
 
 
-    if (!(profileCreationHelper_->*addField_)(field))
+    if (!sendField(field))
         delete field;
 }
 

@@ -7,8 +7,13 @@
 #include "DefaultFieldsCreator.h"
 #include "DefaultFieldDataBase.h"
 #include "AssociativePair.h"
+#include "MainTableHelper.h"
+#include "MainTable.h"
+#include "Informant.h"
+#include "StyleSheetCreator.h"
 
 #include <QMainWindow>
+#include <QHeaderView>
 #include <QMenu>
 
 QT_BEGIN_NAMESPACE
@@ -34,6 +39,9 @@ private:
     DefaultFieldDataBase defaultFieldDataBase_;
     ProfileDataBaseManager profileDataBaseManager_;
 
+    MainTableHelper mainTableHelper_;
+    Informant informant_;
+
 public:
     IESAAWindow(QWidget* parent = nullptr);
     ~IESAAWindow();
@@ -49,6 +57,9 @@ private slots:
     void on_action_Statistics_triggered();
 
     void fff(const QPoint &pos);
+
+    void on_comboBox_currentTextChanged(const QString &arg1);
+    void on_pushButton_2_clicked(bool checked);
 
 private:
     void initNamesSets();
