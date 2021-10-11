@@ -32,12 +32,17 @@ void
 Informant::
 setViewed(bool value)
 {
-    if (value) {
+    StyleSheetCreator styleSheetCreator;
 
+    if (value) {
+        styleSheetCreator.setProperty("QPushButton", "background-color", "blue");
+        pushButton_->setStyleSheet(styleSheetCreator.getStyleSheet());
         isViewed_ = value;
         return;
     }
 
+    styleSheetCreator.setProperty("QPushButton", "background-color", "red");
+    pushButton_->setStyleSheet(styleSheetCreator.getStyleSheet());
     isViewed_ = value;
 }
 
@@ -52,21 +57,21 @@ bool
 Informant::
 sendInfoMessage(const QString& message)
 {
-    setViewed(true);
+    setViewed(false);
 }
 
 bool
 Informant::
 sendWarningMessage(const QString& message)
 {
-    setViewed(true);
+    setViewed(false);
 }
 
 bool
 Informant::
 sendErrorMessage(const QString& message)
 {
-    setViewed(true);
+    setViewed(false);
 }
 
 void

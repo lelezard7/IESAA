@@ -333,9 +333,13 @@ void
 IESAAWindow::
 on_pushButton_2_clicked(bool checked)
 {
-    if (checked)
+    if (checked) {
+        informant_.setViewed(true);
         ui_->scrollArea->show();
-    else
+    }
+    else {
+        informant_.setViewed(false);
         ui_->scrollArea->hide();
+    }
 }
 

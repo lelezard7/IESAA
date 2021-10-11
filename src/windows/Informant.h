@@ -1,6 +1,8 @@
 #ifndef INFORMANT_H_
 #define INFORMANT_H_
 
+#include "StyleSheetCreator.h"
+
 #include <QPushButton>
 #include <QColor>
 
