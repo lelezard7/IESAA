@@ -337,5 +337,25 @@ on_pushButton_2_clicked(bool checked)
         ui_->scrollArea->show();
     else
         ui_->scrollArea->hide();
+
+    QLabel* l = new QLabel(ui_->scrollArea);
+    StyleSheetCreator styleSheetCreators;
+    styleSheetCreators.setProperty("QLabel", "border", "4px dashed black");
+    styleSheetCreators.setProperty("QLabel", "padding", "8px");
+    l->setStyleSheet(styleSheetCreators.getStyleSheet());
+    l->setText("Ошибка. Данный ввод не корректен.\n"
+               "Пожалуйста исправте!");
+
+
+    ui_->scrollAreaWidgetContents->layout()->addWidget(l);
+}
+
+
+void
+IESAAWindow::
+on_action_triggered()
+{
+    SubscriptionWindow subscriptionWindow(this);
+    subscriptionWindow.exec();
 }
 

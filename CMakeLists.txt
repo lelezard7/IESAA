@@ -89,6 +89,10 @@ add_executable(IESAA
     src/windows/Informant.h
     ui/IESAAWindow.ui
 
+    src/windows/SubscriptionWindow/SubscriptionWindow.cpp
+    src/windows/SubscriptionWindow/SubscriptionWindow.h
+    ui/SubscriptionWindow.ui
+
     src/windows/AuthorizationWindow/AuthorizationWindow.cpp
     src/windows/AuthorizationWindow/AuthorizationWindow.h
     src/windows/AuthorizationWindow/MessageBar.cpp

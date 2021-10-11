@@ -11,6 +11,7 @@
 #include "MainTable.h"
 #include "Informant.h"
 #include "StyleSheetCreator.h"
+#include "SubscriptionWindow/SubscriptionWindow.h"
 
 #include <QMainWindow>
 #include <QHeaderView>
@@ -60,6 +61,8 @@ private slots:
 
     void on_comboBox_currentTextChanged(const QString &arg1);
     void on_pushButton_2_clicked(bool checked);
+
+    void on_action_triggered();
 
 private:
     void initNamesSets();
