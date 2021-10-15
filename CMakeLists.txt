@@ -18,8 +18,10 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 
 add_executable(IESAA
-    src/IESAA.cpp
-    src/IESAA.h
+    src/App.cpp
+    src/App.h
+    src/AppStorage.cpp
+    src/AppStorage.h
 
     src/IESAAError.cpp
     src/IESAAError.h
@@ -38,6 +40,9 @@ add_executable(IESAA
 
     src/DefaultFieldDataBase.cpp
     src/DefaultFieldDataBase.h
+
+    src/MessageBar.cpp
+    src/MessageBar.h
 
     src/FieldWidgets/IFieldWidget.cpp
     src/FieldWidgets/IFieldWidget.h
@@ -95,8 +100,6 @@ add_executable(IESAA
 
     src/windows/AuthorizationWindow/AuthorizationWindow.cpp
     src/windows/AuthorizationWindow/AuthorizationWindow.h
-    src/windows/AuthorizationWindow/MessageBar.cpp
-    src/windows/AuthorizationWindow/MessageBar.h
     ui/AuthorizationWindow.ui
 
     src/windows/SettingsWindow/SettingsWindow.cpp

@@ -26,6 +26,8 @@ public:
     bool isPropertyCorrect(const QString& property, QString* buffer = nullptr) const;
     bool isValueCorrect(const QString& value, QString* buffer = nullptr) const;
 
+    void clear();
+
 protected:
     QVector<StyleSheetObject>::Iterator getStyleSheetIt(const QString& styleSheet);
     QVector<StyleSheetObject>::ConstIterator getStyleSheetCIt(const QString& styleSheet) const;

@@ -1,17 +1,17 @@
 #ifndef PFCREATIONHELPER_H_
 #define PFCREATIONHELPER_H_
 
-#include "NamesSetsManager.h"
 #include "DefaultFieldsCreator.h"
+#include "NamesSetsManager.h"
 
 
 class PFCreationHelper
 {
-    DefaultFieldsCreator* defaultFieldsCreator_;
-    NamesSetsManager* namesSetsManager_;
-
     QComboBox* dataTypeComboBox_;
     QComboBox* recFormatComboBox_;
+
+    DefaultFieldsCreator* defaultFieldsCreator_;
+    NamesSetsManager* namesSetsManager_;
 
 public:
     PFCreationHelper();
@@ -26,6 +26,7 @@ public:
 
     void setDefaultFieldsCreator(DefaultFieldsCreator* defaultFieldsCreator);
     DefaultFieldsCreator* getDefaultFieldsCreator() const;
+
 
     QString getCurrentSetName() const;
     IFieldWidget* copyCurrentFieldWidget() const;

@@ -1,7 +1,7 @@
 #ifndef SETTINGSWINDOW_H_
 #define SETTINGSWINDOW_H_
 
-#include "IESAA.h"
+#include "App.h"
 #include "../../LocalDB.h"
 #include "FieldsSettingsHelper.h"
 #include "DefaultFieldsCreator.h"

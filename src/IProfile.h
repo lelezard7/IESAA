@@ -2,6 +2,7 @@
 #define IPROFILE_H_
 
 #include "IField.h"
+#include "App.h"
 
 #include <QVector>
 

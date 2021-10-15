@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1396</width>
-    <height>595</height>
+    <height>677</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,12 +22,12 @@
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <property name="leftMargin">
      <number>0</number>
     </property>
     <property name="topMargin">
-     <number>5</number>
+     <number>4</number>
     </property>
     <property name="rightMargin">
      <number>0</number>
@@ -36,7 +36,7 @@
      <number>0</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
@@ -55,17 +55,11 @@
       </item>
       <item>
        <widget class="QSplitter" name="splitter">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
         <widget class="QWidget" name="layoutWidget">
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
@@ -155,270 +149,367 @@
           </item>
          </layout>
         </widget>
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>1</verstretch>
-          </sizepolicy>
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="styleSheet">
+          <string notr="true">QTabWidget::pane {
+	border: 1px solid gray;
+	background-color: #f5f5f5;
+}
+
+QTabBar::tab {
+	background-color: #c4c4c3;
+    border: 1px solid gray;
+	padding: 4px;
+}
+
+QTabBar::tab:first {
+	border-bottom-left-radius: 2px;
+}
+
+QTabBar::tab:last {
+	border-bottom-right-radius: 2px;
+}
+
+QTabBar::tab::selected {
+	background-color: #f5f5f5;
+	border-top: none;
+}</string>
          </property>
-         <property name="minimumSize">
-          <size>
-           <width>250</width>
-           <height>0</height>
-          </size>
+         <property name="tabPosition">
+          <enum>QTabWidget::South</enum>
          </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
+         <property name="currentIndex">
+          <number>0</number>
          </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>624</width>
-            <height>290</height>
-           </rect>
+         <widget class="QWidget" name="tab">
+          <property name="styleSheet">
+           <string notr="true">QWidget {
+	border: none;
+	background-color: #f5f5f5;
+}</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <attribute name="title">
+           <string>Фильтры</string>
+          </attribute>
+          <widget class="QPushButton" name="pushButton_4">
+           <property name="geometry">
+            <rect>
+             <x>130</x>
+             <y>260</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Сбросить</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="geometry">
+            <rect>
+             <x>43</x>
+             <y>185</y>
+             <width>108</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Сделать прочие фильтры</string>
+           </property>
+          </widget>
+          <widget class="QTimeEdit" name="timeEdit">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>126</y>
+             <width>55</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_4">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>64</x>
+             <y>156</y>
+             <width>30</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>До</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="layoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>43</x>
+             <y>46</y>
+             <width>138</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>От</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="dateEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="calendarPopup">
+               <bool>true</bool>
+              </property>
+              <property name="date">
+               <date>
+                <year>2021</year>
+                <month>9</month>
+                <day>27</day>
+               </date>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QLabel" name="label_3">
+           <property name="geometry">
+            <rect>
+             <x>44</x>
+             <y>126</y>
+             <width>30</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>От</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="layoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>43</x>
+             <y>76</y>
+             <width>164</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QCheckBox" name="checkBox">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>До</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="dateEdit_2">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="calendarPopup">
+               <bool>true</bool>
+              </property>
+              <property name="date">
+               <date>
+                <year>2021</year>
+                <month>9</month>
+                <day>27</day>
+               </date>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="geometry">
+            <rect>
+             <x>44</x>
+             <y>260</y>
+             <width>80</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Применить</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_6">
+           <property name="geometry">
+            <rect>
+             <x>43</x>
+             <y>27</y>
+             <width>26</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Дата</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="checkBox_2">
+           <property name="geometry">
+            <rect>
+             <x>44</x>
+             <y>159</y>
+             <width>16</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_5">
+           <property name="geometry">
+            <rect>
+             <x>43</x>
+             <y>106</y>
+             <width>30</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Время</string>
+           </property>
+          </widget>
+          <widget class="QTimeEdit" name="timeEdit_2">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>100</x>
+             <y>156</y>
+             <width>55</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <attribute name="title">
+           <string>Уведомления</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>Дата</string>
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="styleSheet">
+              <string notr="true">QScrollArea {
+	border: none;
+}</string>
              </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>479</width>
+                <height>283</height>
+               </rect>
+              </property>
+             </widget>
             </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="minimumSize">
-                <size>
-                 <width>30</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>От</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDateEdit" name="dateEdit">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="calendarPopup">
-                <bool>true</bool>
-               </property>
-               <property name="date">
-                <date>
-                 <year>2021</year>
-                 <month>9</month>
-                 <day>27</day>
-                </date>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <widget class="QCheckBox" name="checkBox">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>30</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>До</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDateEdit" name="dateEdit_2">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="calendarPopup">
-                <bool>true</bool>
-               </property>
-               <property name="date">
-                <date>
-                 <year>2021</year>
-                 <month>9</month>
-                 <day>27</day>
-                </date>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>Время</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="minimumSize">
-                <size>
-                 <width>30</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>От</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTimeEdit" name="timeEdit">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
-             <item>
-              <widget class="QCheckBox" name="checkBox_2">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_4">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>30</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>До</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTimeEdit" name="timeEdit_2">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEdit">
-             <property name="text">
-              <string>Сделать прочие фильтры</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
-             <item>
-              <widget class="QPushButton" name="pushButton_3">
-               <property name="text">
-                <string>Применить</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="text">
-                <string>Сбросить</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
            </item>
           </layout>
          </widget>
         </widget>
        </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Maximum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>5</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>
@@ -483,6 +574,9 @@ QPushButton:hover {
          <iconset resource="../res/Res.qrc">
           <normaloff>:/icons/black/Bell</normaloff>:/icons/black/Bell</iconset>
         </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -495,7 +589,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>1396</width>
-     <height>26</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="styleSheet">

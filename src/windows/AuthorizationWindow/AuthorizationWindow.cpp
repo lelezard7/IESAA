@@ -8,11 +8,11 @@ AuthorizationWindow::
 AuthorizationWindow(QWidget* parent)
     : QDialog(parent)
     , ui_(new Ui::AuthorizationWindow)
-    , messageBar_(ui_)
     , isShowPass_(false)
 {
     ui_->setupUi(this);
     setFixedSize(size());
+    messageBar_.setMessageBar(ui_->messageBar);
     messageBar_.resetMessage();
 
     bg_.addButton(ui_->pushButton_SelectGym);
@@ -21,7 +21,7 @@ AuthorizationWindow(QWidget* parent)
     connect(&bg_, QOverload<QAbstractButton*, bool>::of(&QButtonGroup::buttonToggled),
             [&messageBar = messageBar_, &errCode = errCode_](QAbstractButton* button, bool checked) {
         if (button->objectName() == "pushButton_SelectShop") {
-            messageBar.setMessage("Раздел \"Магазин\" находится в разработке! Выберите \"Спортзал\".");
+            messageBar.setErrorMessage("Раздел \"Магазин\" находится в разработке! Выберите \"Спортзал\".");
             messageBar.freeze(true);
 
             errCode.setCode(EC_NotAccessibleSection);
@@ -94,22 +94,22 @@ on_pushButton_Apply_clicked()
         return;
 
     if (ui_->lineEdit_Login->text() == "") {
-        messageBar_.setMessage("Введите логин!");
+        messageBar_.setErrorMessage("Введите логин!");
         return;
     }
 
     if (ui_->lineEdit_Password->text() == "") {
-        messageBar_.setMessage("Введите пароль!");
+        messageBar_.setErrorMessage("Введите пароль!");
         return;
     }
 
     if (ui_->lineEdit_Login->text() != "Artem") {
-        messageBar_.setMessage("Не верный логин или пароль!");
+        messageBar_.setErrorMessage("Не верный логин или пароль!");
         return;
     }
 
     if (ui_->lineEdit_Password->text() != "321123") {
-        messageBar_.setMessage("Не верный логин или пароль!");
+        messageBar_.setErrorMessage("Не верный логин или пароль!");
         return;
     }
 

@@ -123,7 +123,7 @@ switchTo(const QString& name)
     setInfoToInfoLabel(defaultFieldDBSize, activeFields, inactiveFields);
 }
 
-bool
+AppError
 FieldsSettingsHelper::
 addField(Field*)
 {
@@ -154,10 +154,10 @@ addField(Field*)
 //    tableWidget_->setCellWidget(i, 2, newWidget);
 //    tableWidget_->setItem(i, 1, new QTableWidgetItem(field->getName()));
 //    return true;
-    return false;
+    return AppError(ErrCode_Undefined, "");
 }
 
-bool
+AppError
 FieldsSettingsHelper::
 addFieldToProfile(Field*)
 {
@@ -185,23 +185,25 @@ addFieldToProfile(Field*)
 //    tableWidget_->setItem(i, 1, new QTableWidgetItem(field->getName()));
 //    return true;
 
-    return false;
+    return AppError(ErrCode_Undefined, "");
 }
 
-bool FieldsSettingsHelper::addFieldToDefaultFields(Field* field)
+AppError
+FieldsSettingsHelper::
+addFieldToDefaultFields(Field* field)
 {
     if (!field)
-        return false;
+        return AppError(ErrCode_Undefined, "");
 
     if (tableWidget_->columnCount() < 3)
-        return false;
+        return AppError(ErrCode_Undefined, "");
 
     // add уже проверяет поля на повторение имен.
     if (!defaultFieldDataBase_->getValue(currentDataBase_)->addElement(field))
-        return false;
+        return AppError(ErrCode_FieldAlreadyExists, "Поле по умолчанию с таким названием уже существует!");
 
     if (!field->fieldInfo().visibility)
-        return true;
+        return AppError();
 
     int rowCount = tableWidget_->rowCount();
     tableWidget_->insertRow(rowCount);
@@ -212,5 +214,5 @@ bool FieldsSettingsHelper::addFieldToDefaultFields(Field* field)
     tableWidget_->setCellWidget(rowCount, 0, new QCheckBox());
     tableWidget_->setCellWidget(rowCount, 2, newWidget);
     tableWidget_->setItem(rowCount, 1, new QTableWidgetItem(field->getName()));
-    return true;
+    return AppError();
 }

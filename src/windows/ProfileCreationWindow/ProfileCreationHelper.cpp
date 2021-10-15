@@ -61,26 +61,27 @@ getProfile() const
     return profile_;
 }
 
-bool
+AppError
 ProfileCreationHelper::
 addField(Field* field)
 {
     if (!field)
-        return false;
+        return AppError(ErrCode_Undefined, "");
 
     if (tableWidget_->columnCount() < 3)
-        return false;
+        return AppError(ErrCode_Undefined, "");
 
-    // add уже проверяет поля на повторение имен.
-    if (!defaultFieldDataBase_->addElement(field->copy()))
-        return false;
+    if (defaultFieldDataBase_->findByName(field->getName()))
+        return AppError(ErrCode_FieldAlreadyExists, "Поле по умолчанию с таким названием уже существует!");
 
-    // addField уже проверяет поля на повторение имен.
-    if (!profile_->addField(field))
-        return false;
+    if (profile_->getField(field->getName()))
+        return AppError(ErrCode_FieldAlreadyExists, "Поле с таким названием уже существует в профиле!");
+
+    defaultFieldDataBase_->addElement(field->copy());
+    profile_->addField(field);
 
     if (!field->fieldInfo().visibility)
-        return true;
+        return AppError();
 
     int i = tableWidget_->rowCount();
     tableWidget_->insertRow(i);
@@ -91,25 +92,25 @@ addField(Field* field)
     tableWidget_->setCellWidget(i, 0, new QCheckBox());
     tableWidget_->setCellWidget(i, 2, newWidget);
     tableWidget_->setItem(i, 1, new QTableWidgetItem(field->getName()));
-    return true;
+    return AppError();
 }
 
-bool
+AppError
 ProfileCreationHelper::
 addFieldToProfile(Field* field)
 {
     if (!field)
-        return false;
+        return AppError(ErrCode_Undefined, "");
 
     if (tableWidget_->columnCount() < 3)
-        return false;
+        return AppError(ErrCode_Undefined, "");
 
     // addField уже проверяет поля на повторение имен.
     if (!profile_->addField(field))
-        return false;
+        return AppError(ErrCode_FieldAlreadyExists, "Поле с таким названием уже существует в профиле!");
 
     if (!field->fieldInfo().visibility)
-        return true;
+        return AppError();
 
     int i = tableWidget_->rowCount();
     tableWidget_->insertRow(i);
@@ -120,14 +121,14 @@ addFieldToProfile(Field* field)
     tableWidget_->setCellWidget(i, 0, new QCheckBox());
     tableWidget_->setCellWidget(i, 2, newWidget);
     tableWidget_->setItem(i, 1, new QTableWidgetItem(field->getName()));
-    return true;
+    return AppError();
 }
 
-bool
+AppError
 ProfileCreationHelper::
 addFieldToDefaultFields(Field*)
 {
-    return false;
+    return AppError(ErrCode_Undefined, "");                      //TODO: Должен обрабатывать.
 }
 
 bool

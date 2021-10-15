@@ -2,6 +2,8 @@
 #include "ui_IESAAWindow.h"
 #include <qalgorithms.h>
 #include <algorithm>
+#include <QSpacerItem>
+#include <QScrollArea>
 
 #include "SettingsWindow/SettingsWindow.h"
 #include "LogsWindow/LogsWindow.h"
@@ -17,6 +19,48 @@
 #define ProfileCategory_Clients   "Клиенты"
 #define ProfileCategory_Staff     "Персонал"
 #define ProfileCategory_Groups    "Группы"
+
+
+
+
+void
+TabWidgetManager::
+setTabWidget(QTabWidget* tabWidget)
+{
+    tabWidget_ = tabWidget;
+//    informant_.set
+}
+
+QTabWidget*
+TabWidgetManager::
+getTabWidget() const
+{ return tabWidget_; }
+
+Informant*
+TabWidgetManager::
+getInformant()
+{ return &informant_; }
+
+void
+TabWidgetManager::
+showHide()
+{
+    if (tabWidget_->isHidden()) {
+        tabWidget_->show();
+        if (tabWidget_->currentWidget()->objectName() == "tab_2")
+
+        return;
+    }
+
+    tabWidget_->hide();
+}
+
+
+
+
+
+
+
 
 
 
@@ -45,25 +89,14 @@ IESAAWindow(QWidget* parent)
     mainTableHelper_.setProfileDataBaseManager(&profileDataBaseManager_);
 
     informant_.setPushButton(ui_->pushButton);
+    informant_.setScrollAreaWidgetContents(ui_->scrollAreaWidgetContents);
 
-    ui_->scrollArea->hide();
+    ui_->tabWidget->hide();
 
-
-
-//    StyleSheetCreator styleSheetCreator;
-//    styleSheetCreator.setProperty("QPushButton", "background-color", "red");
-//    styleSheetCreator.setProperty("QPushButton", "color", "white");
-//    styleSheetCreator.setProperty("QPushButton", "background-color", "green");
-//    styleSheetCreator.setProperty("QPushButton::hover", "background-color", "red");
-
-//    QString str = styleSheetCreator.getStyleSheet();
-//    ui_->pushButton_3->setStyleSheet(str);
-
-
-
-
-
-
+    QList<int> currentSizes = ui_->splitter->sizes();
+    currentSizes[0] = 1000;
+    currentSizes[1] = 300;
+    ui_->splitter->setSizes(currentSizes);
 
     //   === Для демонстрации клиенту ===
 
@@ -269,58 +302,66 @@ void
 IESAAWindow::
 initNamesSets()
 {
-    namesSetsManager_.addNamesSet("Текст",          "Значение");
-    namesSetsManager_.addNamesSet("Текст",          "Лист");
-    namesSetsManager_.addNamesSet("Логический тип", "Значение");
-    namesSetsManager_.addNamesSet("Время",          "Значение");
-    namesSetsManager_.addNamesSet("Дата",           "Значение");
-    namesSetsManager_.addNamesSet("Дата и время",   "Значение");
+    NamesSetsManager* namesSetsManager = getNamesSetsManager();
+
+    namesSetsManager->addNamesSet("Текст",          "Значение");
+    namesSetsManager->addNamesSet("Текст",          "Лист");
+    namesSetsManager->addNamesSet("Логический тип", "Значение");
+    namesSetsManager->addNamesSet("Время",          "Значение");
+    namesSetsManager->addNamesSet("Дата",           "Значение");
+    namesSetsManager->addNamesSet("Дата и время",   "Значение");
 }
 
 void
 IESAAWindow::
 initDefaultFieldsWidgets()
 {
+    DefaultFieldsCreator* defaultFieldsCreator = getDefaultFieldsCreator();
+
     QLineEdit* lineEdit = new QLineEdit;
     IFieldWidget* fieldLineEdit = new FieldLineEdit;
     fieldLineEdit->setWidget(lineEdit);
-    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Текст", "Значение"), fieldLineEdit);
+    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Текст", "Значение"), fieldLineEdit);
 
     ExtTextEdit* textEdit = new ExtTextEdit;
     IFieldWidget* fieldTextEdit = new FieldTextEdit;
     fieldTextEdit->setWidget(textEdit);
-    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Текст", "Лист"), fieldTextEdit);
+    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Текст", "Лист"), fieldTextEdit);
 
     QCheckBox* checkBox = new QCheckBox;
     IFieldWidget* fieldCheckBox = new FieldCheckBox;
     fieldCheckBox->setWidget(checkBox);
-    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Логический тип", "Значение"), fieldCheckBox);
+    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Логический тип", "Значение"), fieldCheckBox);
 
     QDateEdit* dateEdit = new QDateEdit;
     dateEdit->setCalendarPopup(true);
     IFieldWidget* fieldDateEdit = new FieldDateEdit;
     fieldDateEdit->setWidget(dateEdit);
-    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Дата", "Значение"), fieldDateEdit);
+    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Дата", "Значение"), fieldDateEdit);
 
     QDateTimeEdit* dateTimeEdit = new QDateTimeEdit;
     dateTimeEdit->setCalendarPopup(true);
     dateTimeEdit->setDisplayFormat("dd.MM.yyyy HH:mm:ss");
     IFieldWidget* fieldDateTimeEdit = new FieldDateTimeEdit;
     fieldDateTimeEdit->setWidget(dateTimeEdit);
-    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Дата и время", "Значение"), fieldDateTimeEdit);
+    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Дата и время", "Значение"), fieldDateTimeEdit);
 
     QTimeEdit* timeEdit = new QTimeEdit;
     timeEdit->setCalendarPopup(true);
     timeEdit->setDisplayFormat("HH:mm:ss");
     IFieldWidget* fieldTimeEdit = new FieldTimeEdit;
     fieldTimeEdit->setWidget(timeEdit);
-    defaultFieldsCreator_.createAssociation(NamesSetsManager::findSetName("Время", "Значение"), fieldTimeEdit);
+    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Время", "Значение"), fieldTimeEdit);
 }
 
 void
 IESAAWindow::
 on_comboBox_currentTextChanged(const QString &arg1)
 {
+    informant_.sendInfoMessage("Езал грека через реку, видит грека в реке рак."
+                               "Сунул грека руку в реку, рак за руку греку цап.");
+    informant_.sendInfoMessage("dfgdfgdfgdfgdf");
+    informant_.sendInfoMessage("dfgdfgdfgdfgdf2");
 //    mainTableHelper_.clear();
 //    mainTableHelper_.refresh("Клиенты");
 
@@ -334,24 +375,11 @@ IESAAWindow::
 on_pushButton_2_clicked(bool checked)
 {
     if (checked) {
-        informant_.setViewed(true);
-        ui_->scrollArea->show();
+        ui_->tabWidget->show();
     }
     else {
-        informant_.setViewed(false);
-        ui_->scrollArea->hide();
+        ui_->tabWidget->hide();
     }
-
-    QLabel* l = new QLabel(ui_->scrollArea);
-    StyleSheetCreator styleSheetCreators;
-    styleSheetCreators.setProperty("QLabel", "border", "4px dashed black");
-    styleSheetCreators.setProperty("QLabel", "padding", "8px");
-    l->setStyleSheet(styleSheetCreators.getStyleSheet());
-    l->setText("Ошибка. Данный ввод не корректен.\n"
-               "Пожалуйста исправте!");
-
-
-    ui_->scrollAreaWidgetContents->layout()->addWidget(l);
 }
 
 void
@@ -360,4 +388,24 @@ on_action_triggered()
 {
     SubscriptionWindow subscriptionWindow(this);
     subscriptionWindow.exec();
+}
+
+void
+IESAAWindow::
+on_pushButton_clicked(bool checked)
+{
+    if (checked) {
+        ui_->tabWidget->show();
+    }
+    else {
+        ui_->tabWidget->hide();
+    }
+}
+
+void
+IESAAWindow::
+on_tabWidget_currentChanged(int index)
+{
+    if (index == 1)
+        informant_.setViewed(true);
 }

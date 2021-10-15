@@ -35,9 +35,9 @@ public:
     void setInfoToInfoLabel(size_t allFields, size_t activeFields, size_t inactiveFields);
     void switchTo(const QString& name);
 
-    virtual bool addField(Field* field) override;
-    virtual bool addFieldToProfile(Field* field) override;
-    virtual bool addFieldToDefaultFields(Field* field) override;
+    virtual AppError addField(Field* field) override;
+    virtual AppError addFieldToProfile(Field* field) override;
+    virtual AppError addFieldToDefaultFields(Field* field) override;
 
 };
 

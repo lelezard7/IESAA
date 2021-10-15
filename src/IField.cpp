@@ -55,6 +55,20 @@ getWidget() const
 
 void
 Field::
+setWidgetName(const QString& name)
+{
+    widgetName_ = name;
+}
+
+QString
+Field::
+getWidgetName() const
+{
+    return widgetName_;
+}
+
+void
+Field::
 setName(const QString& name)
 {
     name_ = name;

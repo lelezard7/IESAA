@@ -30,9 +30,9 @@ public:
     void setProfile(Profile* profile);
     Profile* getProfile() const;
 
-    virtual bool addField(Field* field) override;
-    virtual bool addFieldToProfile(Field* field) override;
-    virtual bool addFieldToDefaultFields(Field* field) override;
+    virtual AppError addField(Field* field) override;
+    virtual AppError addFieldToProfile(Field* field) override;
+    virtual AppError addFieldToDefaultFields(Field* field) override;
 
     bool removeField(const QString& name);
 

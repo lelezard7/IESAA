@@ -3,10 +3,10 @@
 
 PFCreationHelper::
 PFCreationHelper()
-    : defaultFieldsCreator_(nullptr)
-    , namesSetsManager_    (nullptr)
-    , dataTypeComboBox_    (nullptr)
-    , recFormatComboBox_   (nullptr) {}
+    : dataTypeComboBox_    (nullptr)
+    , recFormatComboBox_   (nullptr)
+    , defaultFieldsCreator_(nullptr)
+    , namesSetsManager_    (nullptr) {}
 
 PFCreationHelper::
 ~PFCreationHelper() {}
@@ -139,6 +139,9 @@ switchTo(const QString& dataTypeName)
 
     for (size_t i = 0; i < recFormatNameCount; ++i)
         recFormatComboBox_->addItem(namesSetOpt->getRecFormatName(i));
+
+    if (recFormatNameCount == 1)
+        recFormatComboBox_->setCurrentText(namesSetOpt->getRecFormatName(0));
 
     return true;
 }

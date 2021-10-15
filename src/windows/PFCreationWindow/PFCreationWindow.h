@@ -5,17 +5,13 @@
 #ifndef PFCREATIONWINDOW_H_
 #define PFCREATIONWINDOW_H_
 
-#include "FieldCreator.h"
 #include "PFCreationHelper.h"
-#include "DefaultFieldsCreator.h"
-#include "NamesSetsManager.h"
 #include "WindowHelper.h"
+#include "AppStorage.h"
+#include "MessageBar.h"
 
+#include <QMessageBox>
 #include <QDialog>
-#include <QComboBox>
-
-
-
 
 namespace Ui
 {
@@ -29,27 +25,66 @@ class PFCreationWindow : public QDialog
 
 private:
     Ui::PFCreationWindow* ui_;
-
-    PFCreationHelper pf_creationHelper_;
-
-    NamesSetsManager& namesSetsManager_;
-    DefaultFieldsCreator& defaultFieldsCreator_;
+    PFCreationHelper pfCreationHelper_;
+    MessageBar messageBar_;
 
     FieldReceiver sendField;
-
+    Field* field_;
 
 public:
-    explicit PFCreationWindow(
-            NamesSetsManager& namesSetsManager,
-            DefaultFieldsCreator& defaultFieldsCreator,
-            FieldReceiver fieldReceiver,
-            QWidget* parent = nullptr);
+    explicit PFCreationWindow(FieldReceiver fieldReceiver, QWidget* parent = nullptr);
+    explicit PFCreationWindow(Field* field, QWidget* parent = nullptr);
     ~PFCreationWindow();
 
-private slots:
-    void on_buttonBox_accepted();
+private:
+    void init();
 
-    void on_comboBox_currentTextChanged(const QString &arg1);
+private slots:
+    void on_lineEdit_FieldName_textChanged(const QString&);
+    void on_comboBox_DataType_currentTextChanged(const QString& currentText);
+    void on_comboBox_RecFormat_currentTextChanged(const QString&);
+    void on_pushButton_Apply_clicked();
+
 };
+
+
+
+//#include "FieldCreator.h"
+//#include "PFCreationHelper.h"
+//#include "DefaultFieldsCreator.h"
+//#include "NamesSetsManager.h"
+
+
+
+
+
+//class PFCreationWindow : public QDialog
+//{
+//    Q_OBJECT
+
+//private:
+//    Ui::PFCreationWindow* ui_;
+
+//    PFCreationHelper pf_creationHelper_;
+
+//    NamesSetsManager& namesSetsManager_;
+//    DefaultFieldsCreator& defaultFieldsCreator_;
+
+//    FieldReceiver sendField;
+
+
+//public:
+//    explicit PFCreationWindow(
+//            NamesSetsManager& namesSetsManager,
+//            DefaultFieldsCreator& defaultFieldsCreator,
+//            FieldReceiver fieldReceiver,
+//            QWidget* parent = nullptr);
+//    ~PFCreationWindow();
+
+//private slots:
+//    void on_buttonBox_accepted();
+
+//    void on_comboBox_currentTextChanged(const QString &arg1);
+//};
 
 #endif

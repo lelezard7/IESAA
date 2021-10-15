@@ -30,7 +30,7 @@ GroupManagementWindow::
 
 void
 GroupManagementWindow::
-on_pushButton_4_clicked()
+on_pushButton_4_clicked() //Клиенты
 {
 //    ProfileCreationWindow clientCreationWindow;
 //    clientCreationWindow.exec();
@@ -38,7 +38,7 @@ on_pushButton_4_clicked()
 
 void
 GroupManagementWindow::
-on_pushButton_6_clicked()
+on_pushButton_6_clicked() //Клиенты
 {
 //    ProfileCreationWindow clientCreationWindow;
 //    clientCreationWindow.exec();

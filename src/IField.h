@@ -1,7 +1,6 @@
 ﻿#ifndef IFIELD_H_
 #define IFIELD_H_
 
-#include "IESAA.h"
 #include "FieldWidgets.h"
 
 #include <QString>
@@ -45,9 +44,10 @@ struct FieldInfo
 class Field
 {
     QString name_;
-
-    IFieldWidget* widget_;
     FieldInfo fieldInfo_;
+
+    QString widgetName_;
+    IFieldWidget* widget_;
 
 public:
     Field();
@@ -56,6 +56,9 @@ public:
 
     bool setWidget(IFieldWidget* widget);
     IFieldWidget* getWidget() const;
+
+    void setWidgetName(const QString& name);
+    QString getWidgetName() const;
 
     void setName(const QString& name);
     QString getName() const;

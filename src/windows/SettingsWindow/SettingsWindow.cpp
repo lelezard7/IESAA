@@ -77,8 +77,6 @@ SettingsWindow::
 on_pushButton_clicked()
 {
     PFCreationWindow pf_creationWindow(
-                namesSetsManager_,
-                *defaultFieldsCreator_,
                 createFieldReceiver(fieldsSettingsHelper_, FieldsSettingsHelper::addFieldToDefaultFields),
                 this);
     pf_creationWindow.exec();

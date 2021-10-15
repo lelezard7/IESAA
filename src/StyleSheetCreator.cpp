@@ -119,6 +119,13 @@ isValueCorrect(const QString& value, QString* buffer) const
     return true;
 }
 
+void
+StyleSheetCreator::
+clear()
+{
+    styleSheet_.clear();
+}
+
 QVector<StyleSheetCreator::StyleSheetObject>::Iterator
 StyleSheetCreator::
 getStyleSheetIt(const QString& styleSheet)

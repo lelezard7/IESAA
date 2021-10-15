@@ -96,8 +96,6 @@ ProfileCreationWindow::
 on_pushButton_clicked()
 {
     PFCreationWindow pf_creationWindow(
-                namesSetsManager_,
-                defaultFieldsCreator_,
                 createFieldReceiver(profileCreationHelper_, ProfileCreationHelper::addField),
                 this);
     pf_creationWindow.exec();
@@ -108,8 +106,6 @@ ProfileCreationWindow::
 on_pushButton_2_clicked()
 {
     PFCreationWindow pf_creationWindow(
-                namesSetsManager_,
-                defaultFieldsCreator_,
                 createFieldReceiver(profileCreationHelper_, ProfileCreationHelper::addFieldToProfile),
                 this);
     pf_creationWindow.exec();

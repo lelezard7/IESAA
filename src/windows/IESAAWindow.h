@@ -12,10 +12,12 @@
 #include "Informant.h"
 #include "StyleSheetCreator.h"
 #include "SubscriptionWindow/SubscriptionWindow.h"
+#include "AppStorage.h"
 
 #include <QMainWindow>
 #include <QHeaderView>
 #include <QMenu>
+#include <QScrollArea>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -23,6 +25,24 @@ namespace Ui
     class IESAAWindow;
 }
 QT_END_NAMESPACE
+
+
+class TabWidgetManager
+{
+    QTabWidget* tabWidget_;
+
+    Informant informant_;
+
+public:
+    void setTabWidget(QTabWidget* tabWidget);
+    QTabWidget* getTabWidget() const;
+
+    Informant* getInformant();
+
+    void showHide();
+
+};
+
 
 
 class IESAAWindow : public QMainWindow
@@ -63,6 +83,9 @@ private slots:
     void on_pushButton_2_clicked(bool checked);
 
     void on_action_triggered();
+    void on_pushButton_clicked(bool checked);
+
+    void on_tabWidget_currentChanged(int index);
 
 private:
     void initNamesSets();
