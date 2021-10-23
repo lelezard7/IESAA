@@ -6,7 +6,8 @@ PFCreationHelper()
     : dataTypeComboBox_    (nullptr)
     , recFormatComboBox_   (nullptr)
     , defaultFieldsCreator_(nullptr)
-    , namesSetsManager_    (nullptr) {}
+    , namesSetsManager_    (nullptr)
+    , assocs_              (nullptr) {}
 
 PFCreationHelper::
 ~PFCreationHelper() {}
@@ -31,6 +32,20 @@ PFCreationHelper::
 getRecFormatComboBox() const
 {
     return recFormatComboBox_;
+}
+
+void
+PFCreationHelper::
+setAssocs(AssociativePair<QString, unsigned>* assocs)
+{
+    assocs_ = assocs;
+}
+
+AssociativePair<QString, unsigned>*
+PFCreationHelper::
+getAssocs() const
+{
+    return assocs_;
 }
 
 void
@@ -61,14 +76,17 @@ getDefaultFieldsCreator() const
     return defaultFieldsCreator_;
 }
 
-QString
+unsigned
 PFCreationHelper::
-getCurrentSetName() const
+getWidgetId() const
 {
     if (!namesSetsManager_ || !dataTypeComboBox_ || !recFormatComboBox_)
-        return "";
+        return FLAG_NULL;
 
-    return NamesSetsManager::findSetName(dataTypeComboBox_->currentText(), recFormatComboBox_->currentText());
+    unsigned dtid = *assocs_->getValue(dataTypeComboBox_->currentText());
+    unsigned rfid = *assocs_->getValue(recFormatComboBox_->currentText());
+
+    return dtid + rfid;
 }
 
 IFieldWidget*
@@ -78,7 +96,7 @@ copyCurrentFieldWidget() const
     if (!defaultFieldsCreator_)
         return nullptr;
 
-    return defaultFieldsCreator_->copyValue(getCurrentSetName());
+    return defaultFieldsCreator_->copyValue(getWidgetId());
 }
 
 bool

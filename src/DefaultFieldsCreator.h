@@ -6,14 +6,19 @@
 
 #include <QVector>
 
+#define PairIdNotFound   0x00000000
 
-class DefaultFieldsCreator : public AssociativePair<QString, IFieldWidget*>
+
+class DefaultFieldsCreator : public AssociativePair<unsigned, IFieldWidget*>
 {
 public:
     DefaultFieldsCreator();
     virtual ~DefaultFieldsCreator();
 
-    IFieldWidget* copyValue(const QString& name) const;
+    virtual unsigned getName(size_t i) const override;
+    virtual bool isNameCorrect(unsigned name) const override;
+
+    IFieldWidget* copyValue(unsigned name) const;
 
 };
 

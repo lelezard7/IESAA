@@ -87,10 +87,120 @@ private slots:
 
     void on_tabWidget_currentChanged(int index);
 
+    void on_pushButton_5_clicked();
+
 private:
     void initNamesSets();
     void initDefaultFieldsWidgets();
 
 };
+
+
+
+
+
+
+//class IExtention
+//{
+//    Field* field_;
+
+//public:
+//    IExtention() : field_(nullptr) {};
+//    virtual ~IExtention() {};
+
+//    void setParentField(Field* field) {
+//        field_ = field;
+//    };
+
+//    Field* getParentField() {
+//        return field_;
+//    };
+
+//    virtual QString getWidgetText() = 0;
+
+//};
+
+//class LineEditExtention : public IExtention
+//{
+//public:
+//    QString getWidgetText() override {
+//        return dynamic_cast<QLineEdit*>(this)->text();
+//    };
+
+//};
+
+//class IExtWidget
+//{
+//    Field* field_;
+
+//public:
+//    void setParentField(Field* field) {
+//        field_ = field;
+//    };
+
+//    Field* getParentField() {
+//        return field_;
+//    };
+
+//};
+
+//class MyLineEdit : public QLineEdit, public LineEditExtention
+//{
+
+//public:
+//    MyLineEdit() : QLineEdit(), LineEditExtention() {};
+//    virtual ~MyLineEdit() {};
+
+//};
+
+
+
+
+
+
+
+
+
+//class MyIExtention : public QWidget
+//{
+//    Field* field_;
+
+//public:
+//    MyIExtention() : field_(nullptr) {};
+//    virtual ~MyIExtention() {};
+
+//    void setParentField(Field* field) {
+//        field_ = field;
+//    };
+
+//    Field* getParentField() {
+//        return field_;
+//    };
+
+//    virtual QString getWidgetText() = 0;
+
+//};
+
+//class MyLineEditExtention : public MyIExtention
+//{
+//public:
+//    QString getWidgetText() override {
+//        return dynamic_cast<QLineEdit*>(this)->text();
+//    };
+
+//};
+
+//class MyLineEdit : virtual public QLineEdit, virtual public MyLineEditExtention
+//{
+
+//public:
+//    MyLineEdit() : QLineEdit(), MyLineEditExtention() {};
+//    virtual ~MyLineEdit() {};
+
+//};
+
+
+
+
 
 #endif

@@ -42,7 +42,9 @@ setWidget(IFieldWidget* widget)
     if (widget_)
         delete widget_;
 
-    widget_ = widget;
+//    ExtWidget* extWidget = reinterpret_cast<ExtWidget*>(widget->getWidget());
+////    extWidget->setFieldAddr(this);
+//    widget_ = widget;
     return true;
 }
 
@@ -55,16 +57,16 @@ getWidget() const
 
 void
 Field::
-setWidgetName(const QString& name)
+setWidgetId(unsigned wid)
 {
-    widgetName_ = name;
+    wid_ = wid;
 }
 
-QString
+unsigned
 Field::
-getWidgetName() const
+getWidgetId() const
 {
-    return widgetName_;
+    return wid_;
 }
 
 void

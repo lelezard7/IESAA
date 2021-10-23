@@ -28,6 +28,9 @@ private:
     PFCreationHelper pfCreationHelper_;
     MessageBar messageBar_;
 
+    NamesSetsManager namesSetsManager_;
+    AssociativePair<QString, unsigned> assocs_;
+
     FieldReceiver sendField;
     Field* field_;
 
@@ -46,45 +49,5 @@ private slots:
     void on_pushButton_Apply_clicked();
 
 };
-
-
-
-//#include "FieldCreator.h"
-//#include "PFCreationHelper.h"
-//#include "DefaultFieldsCreator.h"
-//#include "NamesSetsManager.h"
-
-
-
-
-
-//class PFCreationWindow : public QDialog
-//{
-//    Q_OBJECT
-
-//private:
-//    Ui::PFCreationWindow* ui_;
-
-//    PFCreationHelper pf_creationHelper_;
-
-//    NamesSetsManager& namesSetsManager_;
-//    DefaultFieldsCreator& defaultFieldsCreator_;
-
-//    FieldReceiver sendField;
-
-
-//public:
-//    explicit PFCreationWindow(
-//            NamesSetsManager& namesSetsManager,
-//            DefaultFieldsCreator& defaultFieldsCreator,
-//            FieldReceiver fieldReceiver,
-//            QWidget* parent = nullptr);
-//    ~PFCreationWindow();
-
-//private slots:
-//    void on_buttonBox_accepted();
-
-//    void on_comboBox_currentTextChanged(const QString &arg1);
-//};
 
 #endif

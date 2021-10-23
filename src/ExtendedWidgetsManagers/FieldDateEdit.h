@@ -1,7 +1,7 @@
 #ifndef FIELDDATEEDIT_H_
 #define FIELDDATEEDIT_H_
 
-#include "FieldWidgets/IFieldWidget.h"
+#include "ExtendedWidgetsManagers/IFieldWidget.h"
 
 #include <QDateEdit>
 

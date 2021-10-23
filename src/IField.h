@@ -46,7 +46,7 @@ class Field
     QString name_;
     FieldInfo fieldInfo_;
 
-    QString widgetName_;
+    unsigned wid_;
     IFieldWidget* widget_;
 
 public:
@@ -57,8 +57,8 @@ public:
     bool setWidget(IFieldWidget* widget);
     IFieldWidget* getWidget() const;
 
-    void setWidgetName(const QString& name);
-    QString getWidgetName() const;
+    void setWidgetId(unsigned wid);
+    unsigned getWidgetId() const;
 
     void setName(const QString& name);
     QString getName() const;

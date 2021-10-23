@@ -44,23 +44,43 @@ add_executable(IESAA
     src/MessageBar.cpp
     src/MessageBar.h
 
-    src/FieldWidgets/IFieldWidget.cpp
-    src/FieldWidgets/IFieldWidget.h
-    src/FieldWidgets/FieldLineEdit.cpp
-    src/FieldWidgets/FieldLineEdit.h
-    src/FieldWidgets/FieldTextEdit.cpp
-    src/FieldWidgets/FieldTextEdit.h
-    src/FieldWidgets/FieldCheckBox.cpp
-    src/FieldWidgets/FieldCheckBox.h
-    src/FieldWidgets/FieldDateEdit.cpp
-    src/FieldWidgets/FieldDateEdit.h
-    src/FieldWidgets/FieldDateTimeEdit.cpp
-    src/FieldWidgets/FieldDateTimeEdit.h
-    src/FieldWidgets/FieldTimeEdit.cpp
-    src/FieldWidgets/FieldTimeEdit.h
 
-    src/FieldWidgets/ExtendedWidgets/ExtTextEdit.cpp
-    src/FieldWidgets/ExtendedWidgets/ExtTextEdit.h
+
+    src/ExtendedWidgetsManagers/IFieldWidget.cpp
+    src/ExtendedWidgetsManagers/IFieldWidget.h
+    src/ExtendedWidgetsManagers/FieldLineEdit.cpp
+    src/ExtendedWidgetsManagers/FieldLineEdit.h
+    src/ExtendedWidgetsManagers/FieldTextEdit.cpp
+    src/ExtendedWidgetsManagers/FieldTextEdit.h
+    src/ExtendedWidgetsManagers/FieldCheckBox.cpp
+    src/ExtendedWidgetsManagers/FieldCheckBox.h
+    src/ExtendedWidgetsManagers/FieldDateEdit.cpp
+    src/ExtendedWidgetsManagers/FieldDateEdit.h
+    src/ExtendedWidgetsManagers/FieldDateTimeEdit.cpp
+    src/ExtendedWidgetsManagers/FieldDateTimeEdit.h
+    src/ExtendedWidgetsManagers/FieldTimeEdit.cpp
+    src/ExtendedWidgetsManagers/FieldTimeEdit.h
+
+
+
+
+    src/ExtendedWidgets/WidgetExtension/WidgetExtension.cpp
+    src/ExtendedWidgets/WidgetExtension/WidgetExtension.h
+
+    src/ExtendedWidgets/ExtLineEdit.cpp
+    src/ExtendedWidgets/ExtLineEdit.h
+    src/ExtendedWidgets/ExtTextEdit.cpp
+    src/ExtendedWidgets/ExtTextEdit.h
+    src/ExtendedWidgets/ExtCheckBox.cpp
+    src/ExtendedWidgets/ExtCheckBox.h
+    src/ExtendedWidgets/ExtDateEdit.cpp
+    src/ExtendedWidgets/ExtDateEdit.h
+    src/ExtendedWidgets/ExtTimeEdit.cpp
+    src/ExtendedWidgets/ExtTimeEdit.h
+    src/ExtendedWidgets/ExtDateTimeEdit.cpp
+    src/ExtendedWidgets/ExtDateTimeEdit.h
+    src/ExtendedWidgets/IExtWidget.cpp
+    src/ExtendedWidgets/IExtWidget.h
 
     src/IField.cpp
     src/IField.inl
@@ -149,6 +169,7 @@ add_executable(IESAA
     ui/EmployeeDefinitionWindow.ui
 
     res/Res.qrc
+    res/app.rc
 
     libs/ONF_v0.0.0/include/IdManagement.h
 )

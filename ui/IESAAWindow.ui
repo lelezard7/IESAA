@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>IESAA</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../res/Res.qrc">
+    <normaloff>:/icons/app/AppIcon</normaloff>:/icons/app/AppIcon</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
     background-color: #f5f5f5;
@@ -110,6 +114,13 @@
               </property>
               <property name="checkable">
                <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="text">
+               <string>Временная кнопка</string>
               </property>
              </widget>
             </item>
@@ -499,7 +510,7 @@ QTabBar::tab::selected {
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>479</width>
+                <width>398</width>
                 <height>283</height>
                </rect>
               </property>

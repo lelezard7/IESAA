@@ -139,12 +139,12 @@ IESAAWindow(QWidget* parent)
 
 //    ui_->mainTable->setContextMenuPolicy(Qt::ContextMenuPolicy::CustomContextMenu);
 
-//    menu_ = new QMenu;
-//    menu_->addAction("Редактировать");
-//    menu_->addAction("Копировать");
-//    menu_->addAction("Вырезать");
-//    menu_->addAction("Вставить");
-//    connect(ui_->mainTable, &QMenu::customContextMenuRequested, this, &IESAAWindow::fff);
+    menu_ = new QMenu;
+    menu_->addAction("Редактировать");
+    menu_->addAction("Копировать");
+    menu_->addAction("Вырезать");
+    menu_->addAction("Вставить");
+    connect(ui_->mainTable, &QMenu::customContextMenuRequested, this, &IESAAWindow::fff);
 
 
 
@@ -302,56 +302,56 @@ void
 IESAAWindow::
 initNamesSets()
 {
-    NamesSetsManager* namesSetsManager = getNamesSetsManager();
+//    NamesSetsManager* namesSetsManager = getNamesSetsManager();
 
-    namesSetsManager->addNamesSet("Текст",          "Значение");
-    namesSetsManager->addNamesSet("Текст",          "Лист");
-    namesSetsManager->addNamesSet("Логический тип", "Значение");
-    namesSetsManager->addNamesSet("Время",          "Значение");
-    namesSetsManager->addNamesSet("Дата",           "Значение");
-    namesSetsManager->addNamesSet("Дата и время",   "Значение");
+//    namesSetsManager->addNamesSet("Текст",          "Значение");
+//    namesSetsManager->addNamesSet("Текст",          "Лист");
+//    namesSetsManager->addNamesSet("Логический тип", "Значение");
+//    namesSetsManager->addNamesSet("Время",          "Значение");
+//    namesSetsManager->addNamesSet("Дата",           "Значение");
+//    namesSetsManager->addNamesSet("Дата и время",   "Значение");
 }
 
 void
 IESAAWindow::
 initDefaultFieldsWidgets()
 {
-    DefaultFieldsCreator* defaultFieldsCreator = getDefaultFieldsCreator();
+//    DefaultFieldsCreator* defaultFieldsCreator = getDefaultFieldsCreator();
 
-    QLineEdit* lineEdit = new QLineEdit;
-    IFieldWidget* fieldLineEdit = new FieldLineEdit;
-    fieldLineEdit->setWidget(lineEdit);
-    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Текст", "Значение"), fieldLineEdit);
+//    QLineEdit* lineEdit = new QLineEdit;
+//    IFieldWidget* fieldLineEdit = new FieldLineEdit;
+//    fieldLineEdit->setWidget(lineEdit);
+//    defaultFieldsCreator->createAssociation(WID_FieldLineEdit, fieldLineEdit);
 
-    ExtTextEdit* textEdit = new ExtTextEdit;
-    IFieldWidget* fieldTextEdit = new FieldTextEdit;
-    fieldTextEdit->setWidget(textEdit);
-    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Текст", "Лист"), fieldTextEdit);
+//    ExtTextEdit* textEdit = new ExtTextEdit;
+//    IFieldWidget* fieldTextEdit = new FieldTextEdit;
+//    fieldTextEdit->setWidget(textEdit);
+//    defaultFieldsCreator->createAssociation(WID_FieldTextEdit, fieldTextEdit);
 
-    QCheckBox* checkBox = new QCheckBox;
-    IFieldWidget* fieldCheckBox = new FieldCheckBox;
-    fieldCheckBox->setWidget(checkBox);
-    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Логический тип", "Значение"), fieldCheckBox);
+//    QCheckBox* checkBox = new QCheckBox;
+//    IFieldWidget* fieldCheckBox = new FieldCheckBox;
+//    fieldCheckBox->setWidget(checkBox);
+//    defaultFieldsCreator->createAssociation(WID_FieldCheckBox, fieldCheckBox);
 
-    QDateEdit* dateEdit = new QDateEdit;
-    dateEdit->setCalendarPopup(true);
-    IFieldWidget* fieldDateEdit = new FieldDateEdit;
-    fieldDateEdit->setWidget(dateEdit);
-    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Дата", "Значение"), fieldDateEdit);
+//    QDateEdit* dateEdit = new QDateEdit;
+//    dateEdit->setCalendarPopup(true);
+//    IFieldWidget* fieldDateEdit = new FieldDateEdit;
+//    fieldDateEdit->setWidget(dateEdit);
+//    defaultFieldsCreator->createAssociation(WID_FieldDateEdit, fieldDateEdit);
 
-    QDateTimeEdit* dateTimeEdit = new QDateTimeEdit;
-    dateTimeEdit->setCalendarPopup(true);
-    dateTimeEdit->setDisplayFormat("dd.MM.yyyy HH:mm:ss");
-    IFieldWidget* fieldDateTimeEdit = new FieldDateTimeEdit;
-    fieldDateTimeEdit->setWidget(dateTimeEdit);
-    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Дата и время", "Значение"), fieldDateTimeEdit);
+//    QDateTimeEdit* dateTimeEdit = new QDateTimeEdit;
+//    dateTimeEdit->setCalendarPopup(true);
+//    dateTimeEdit->setDisplayFormat("dd.MM.yyyy HH:mm:ss");
+//    IFieldWidget* fieldDateTimeEdit = new FieldDateTimeEdit;
+//    fieldDateTimeEdit->setWidget(dateTimeEdit);
+//    defaultFieldsCreator->createAssociation(WID_FieldDateTimeEdit, fieldDateTimeEdit);
 
-    QTimeEdit* timeEdit = new QTimeEdit;
-    timeEdit->setCalendarPopup(true);
-    timeEdit->setDisplayFormat("HH:mm:ss");
-    IFieldWidget* fieldTimeEdit = new FieldTimeEdit;
-    fieldTimeEdit->setWidget(timeEdit);
-    defaultFieldsCreator->createAssociation(NamesSetsManager::findSetName("Время", "Значение"), fieldTimeEdit);
+//    QTimeEdit* timeEdit = new QTimeEdit;
+//    timeEdit->setCalendarPopup(true);
+//    timeEdit->setDisplayFormat("HH:mm:ss");
+//    IFieldWidget* fieldTimeEdit = new FieldTimeEdit;
+//    fieldTimeEdit->setWidget(timeEdit);
+//    defaultFieldsCreator->createAssociation(WID_FieldTimeEdit, fieldTimeEdit);
 }
 
 void
@@ -408,4 +408,237 @@ on_tabWidget_currentChanged(int index)
 {
     if (index == 1)
         informant_.setViewed(true);
+}
+
+
+class MyLineEdit;
+
+class A : public QWidget
+{
+    int a_;
+
+public:
+    A() : a_(0) {};
+    virtual ~A() {};
+
+    void setA(int a) {
+        a_ = a;
+    };
+
+    void fff() {
+        qDebug() << "======== " << a_;
+    };
+
+    MyLineEdit* getThis() {
+        MyLineEdit* reff = reinterpret_cast<MyLineEdit*>(this);
+        return reff;
+    };
+
+};
+
+
+
+
+
+
+class Ac
+{
+public:
+    Ac() {
+        qDebug() << "Constructor Ac";
+    };
+
+    virtual ~Ac() {
+        qDebug() << "Destructor Ac";
+    };
+
+    virtual void foo() {
+        qDebug() << "Foo Ac";
+    };
+};
+
+class Bc : public Ac
+{
+public:
+    Bc() {
+        qDebug() << "Constructor Bc";
+    };
+
+    virtual ~Bc() {
+        qDebug() << "Destructor Bc";
+    };
+
+    void foo() {
+        qDebug() << "Foo Bc";
+    };
+};
+
+class Cc : public Bc
+{
+public:
+    Cc() {
+        qDebug() << "Constructor Cc";
+    };
+
+    virtual ~Cc() {
+        qDebug() << "Destructor Cc";
+    };
+
+    void foo() {
+        qDebug() << "Foo Cc";
+    };
+};
+
+
+
+
+void
+IESAAWindow::
+on_pushButton_5_clicked()
+{
+    Ac* ffff = new Cc;
+    ffff->foo();
+    delete ffff;
+
+
+
+    ui_->mainTable->setColumnCount(10);
+    ui_->mainTable->setRowCount(10);
+
+    Field* field = new Field;
+    field->setName("Test");
+
+    StyleSheetCreator ssc;
+    StyleSheetRule r = ssc.getStyleSheetRule();
+
+    QString dd = ssc;
+//    QString dd2 = r;
+
+
+//    QWidget* w = new MyLineEdit;
+//    dynamic_cast<MyIExtention*>(w)->setParentField(field);
+//    dynamic_cast<QLineEdit*>(w)->setText("dddd");
+//    ui_->mainTable->setCellWidget(0, 0, w);
+
+//    QWidget* o = ui_->mainTable->cellWidget(0, 0);
+//    qDebug() << dynamic_cast<MyIExtention*>(o)->getParentField()->getName();
+//    qDebug() << dynamic_cast<MyIExtention*>(o)->getWidgetText();
+//    qDebug() << dynamic_cast<QLineEdit*>(o)->text();
+
+
+
+
+
+
+
+
+//    ui_->mainTable->setColumnCount(10);
+//    ui_->mainTable->setRowCount(10);
+
+//    Field field;
+//    field.setName("Test");
+
+//    QWidget* f = new MyLineEdit;
+//    f->setParentField(&field);
+
+//    MyLineEdit* d = static_cast<MyLineEdit*>(f);
+//    d->setText("ddddddddd");
+
+//    ui_->mainTable->setCellWidget(0, 0, f);
+//    QWidget* o = ui_->mainTable->cellWidget(0, 0);
+//    IMyLineEdit* d7 = static_cast<IMyLineEdit*>(o);
+//    qDebug() << d7->getParentField()->getName();
+//    qDebug() << static_cast<QLineEdit*>(o)->text();
+
+
+
+
+//    Field field;
+//    field.setName("Test");
+
+//    QWidget* f = new MyLineEdit;
+
+//    IExtWidget* d = static_cast<IExtWidget*>(f);
+//    d->setParentField(&field);
+
+//    IExtWidget* d2 = static_cast<IExtWidget*>(f);
+//    qDebug() << d2->getParentField()->getName();
+
+
+
+
+//    QWidget* d = static_cast<QLineEdit*>(new MyLineEdit);
+//    QWidget* d = new MyLineEdit;
+
+//    QLineEdit* a2 = reinterpret_cast<QLineEdit*>(d);
+//    a2->setText("00000000000");
+//    qDebug() << a2->text();
+
+//    A* f = reinterpret_cast<A*>(d);
+//    f->setA(3);
+//    f->fff();
+//    f->setA(6);
+//    f->fff();
+
+//    qDebug() << f->getThis()->text();
+
+
+
+
+
+
+//    QWidget* d = new MyLineEdit;
+//    MyLineEdit* f = reinterpret_cast<MyLineEdit*>(d);
+//    f->setA(3);
+//    f->setText("--------------------------");
+//    A* a = reinterpret_cast<A*>(d);
+//    QLineEdit* a2 = reinterpret_cast<QLineEdit*>(a->getThis());
+//    qDebug() << a2->text();
+
+
+//    MyLineEdit* f2 = reinterpret_cast<MyLineEdit*>(d);
+//    f2->fff();
+
+
+
+
+
+//    ui_->mainTable->setColumnCount(10);
+//    ui_->mainTable->setRowCount(10);
+
+//    MyLineEdit* l = new MyLineEdit;
+//    l->setText("ddddddd");
+//    l->setA(3);
+
+//    ui_->mainTable->setCellWidget(0, 0, l);
+
+//    qDebug() << "======== " << static_cast<MyLineEdit*>(ui_->mainTable->cellWidget(0, 0))->text();
+//    static_cast<MyLineEdit*>(ui_->mainTable->cellWidget(0, 0))->fff();
+
+
+
+
+
+
+
+
+
+
+
+
+//    QWidget* widget = ui_->mainTable->cellWidget(ui_->mainTable->currentIndex().row(), ui_->mainTable->currentIndex().column());
+//    ExtWidget* extWidget = reinterpret_cast<ExtWidget*>(widget);
+//    qDebug() << "======== " << extWidget->getFieldAddr()->getName();
+
+
+//    ProfileCreationWindow clientCreationWindow(
+//                namesSetsManager_,
+//                defaultFieldsCreator_,
+//                defaultFieldDataBase_.getValue(ProfileCategory_Clients),
+//                ID_Null,
+//                profileDataBaseManager_.getValue(ProfileCategory_Clients),
+//                this);
+//    clientCreationWindow.exec();
+
+//    mainTableHelper_.refreshClients();
 }

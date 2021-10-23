@@ -12,6 +12,7 @@ class PFCreationHelper
 
     DefaultFieldsCreator* defaultFieldsCreator_;
     NamesSetsManager* namesSetsManager_;
+    AssociativePair<QString, unsigned>* assocs_;
 
 public:
     PFCreationHelper();
@@ -21,6 +22,9 @@ public:
     QComboBox* getDataTypeComboBox() const;
     QComboBox* getRecFormatComboBox() const;
 
+    void setAssocs(AssociativePair<QString, unsigned>* assocs);
+    AssociativePair<QString, unsigned>* getAssocs() const;
+
     void setNamesSetsManager(NamesSetsManager* namesSetsManager);
     NamesSetsManager* getNamesSetsManager() const;
 
@@ -28,7 +32,7 @@ public:
     DefaultFieldsCreator* getDefaultFieldsCreator() const;
 
 
-    QString getCurrentSetName() const;
+    unsigned getWidgetId() const;
     IFieldWidget* copyCurrentFieldWidget() const;
 
     bool refreshUi();

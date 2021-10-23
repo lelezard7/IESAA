@@ -1,6 +1,8 @@
 #ifndef ASSOCIATIVEPAIR_H_
 #define ASSOCIATIVEPAIR_H_
 
+#include "App.h"
+
 #include <QVector>
 #include <QString>
 
@@ -42,6 +44,51 @@ protected:
 };
 
 
+template <class T1, class T2>
+class NumAssociativePair : public AssociativePair<T1, T2>
+{
+protected:
+    virtual bool isNameCorrect(T1 name) const override {
+        return name != FLAG_NULL;
+    };
+};
+
+
+template <class T1, class T2>
+class AssociativePair<T1, T2*>
+{
+    using AssocPair = std::pair<T1, T2*>;
+    using AssocPairsIt = typename QVector<std::pair<T1, T2*>>::Iterator;
+    using AssocPairsCIt = typename QVector<std::pair<T1, T2*>>::ConstIterator;
+
+protected:
+    QVector<AssocPair> associativePairs_;
+
+public:
+    AssociativePair();
+    virtual ~AssociativePair();
+
+    virtual bool createAssociation(T1 name, T2* value);
+    virtual bool deleteAssociation(T1 name);
+
+    virtual T2* getValue(T1 name) const;
+    virtual T1 getName(size_t i) const;
+
+    virtual void clear();
+
+    virtual bool find(T1 name) const;
+    virtual size_t size() const;
+
+protected:
+    virtual AssocPairsIt getAssociativePairsIt(T1 name);
+    virtual AssocPairsCIt getAssociativePairsIt(T1 name) const;
+
+    virtual bool isNameCorrect(T1 name) const;
+    virtual bool isValueCorrect(T2* value) const;
+
+};
+
+
 template <class T>
 class AssociativePair<QString, T*>
 {
@@ -73,6 +120,7 @@ protected:
 
     virtual bool isNameCorrect(const QString& name) const;
     virtual bool isValueCorrect(T* value) const;
+
 };
 
 #include "AssociativePair.inl"

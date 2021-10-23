@@ -65,4 +65,8 @@
         <file alias="Bell">icons/black/Bell.svg</file>
         <file alias="Filter">icons/black/Filter.svg</file>
     </qresource>
+    <qresource prefix="/icons/app">
+        <file alias="ExeIcon">icons/app/AppIcon_64x64.ico</file>
+        <file alias="AppIcon">icons/app/AppIcon.svg</file>
+    </qresource>
 </RCC>

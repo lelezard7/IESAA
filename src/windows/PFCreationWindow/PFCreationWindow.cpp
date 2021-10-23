@@ -23,7 +23,17 @@ PFCreationWindow(Field* field, QWidget* parent)
 {
     init();
 
-//    ui_->lineEdit_FieldName->setText(field_->getName());
+    ui_->lineEdit_FieldName->setText(field_->getName());
+
+    for (size_t i = 0; i < assocs_.size(); ++i) {
+        if (assocs_.getValue(*assocs_.getName(i)) == GetDTID(field->getWidgetId()))
+            ui_->comboBox_DataType->setCurrentText(*assocs_.getName(i));
+    }
+
+    for (size_t i = 0; i < assocs_.size(); ++i) {
+        if (assocs_.getValue(*assocs_.getName(i)) == GetRFID(field->getWidgetId()))
+            ui_->comboBox_RecFormat->setCurrentText(*assocs_.getName(i));
+    }
 }
 
 PFCreationWindow::
@@ -38,8 +48,28 @@ init()
     setWindowTitle(APP_NAME " | Создание поля профиля");
     setFixedSize(size());
 
+
+    namesSetsManager_.addNamesSet("Текст",          "Значение");
+    namesSetsManager_.addNamesSet("Текст",          "Лист");
+    namesSetsManager_.addNamesSet("Логический тип", "Значение");
+    namesSetsManager_.addNamesSet("Время",          "Значение");
+    namesSetsManager_.addNamesSet("Дата",           "Значение");
+    namesSetsManager_.addNamesSet("Дата и время",   "Значение");
+
+
+    assocs_.createAssociation("Текст",            DTID_Text);
+    assocs_.createAssociation("Логический тип",   DTID_Boolean);
+    assocs_.createAssociation("Время",            DTID_Time);
+    assocs_.createAssociation("Дата",             DTID_Date);
+    assocs_.createAssociation("Дата и время",     DTID_DateTime);
+
+    assocs_.createAssociation("Значение",   RFID_Value);
+    assocs_.createAssociation("Лист",       RFID_Sheet);
+
+
     pfCreationHelper_.setComboBoxes(ui_->comboBox_DataType, ui_->comboBox_RecFormat);
-    pfCreationHelper_.setNamesSetsManager(getNamesSetsManager());
+    pfCreationHelper_.setNamesSetsManager(&namesSetsManager_);
+    pfCreationHelper_.setAssocs(&assocs_);
     pfCreationHelper_.setDefaultFieldsCreator(getDefaultFieldsCreator());
     pfCreationHelper_.refreshUi();
 
@@ -91,96 +121,28 @@ on_pushButton_Apply_clicked()
         return;
     }
 
-    Field* field = new Field;
+    if (!field_) {
+        Field* field = new Field;
 
-    IFieldWidget* fieldWidget = pfCreationHelper_.copyCurrentFieldWidget();
-    if (!fieldWidget) {
-        delete field;
-        return;
+        IFieldWidget* fieldWidget = pfCreationHelper_.copyCurrentFieldWidget();
+        if (!fieldWidget) {
+            delete field;
+            return;
+        }
+
+        field->setWidget(fieldWidget);
+        field->setName(ui_->lineEdit_FieldName->text());
+        field->setWidgetId(pfCreationHelper_.getWidgetId());
+
+        AppError appError = sendField(field);
+        if (appError != ErrCode_No) {
+            messageBar_.setErrorMessage(appError.description);
+            delete field;
+            return;
+        }
+
+        accept();
     }
 
-    field->setWidget(fieldWidget);
-    field->setName(ui_->lineEdit_FieldName->text());
-
-    AppError appError = sendField(field);
-    if (appError != ErrCode_No) {
-        messageBar_.setErrorMessage(appError.description);                   //TODO: доделать.
-        delete field;
-        return;
-    }
-
-    accept();
+//    field_->getWidget()->
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//PFCreationWindow::
-//PFCreationWindow(
-//        NamesSetsManager& namesSetsManager,
-//        DefaultFieldsCreator& defaultFieldsCreator,
-//        FieldReceiver fieldReceiver,
-//        QWidget* parent)
-//    : QDialog(parent)
-//    , ui_(new Ui::PFCreationWindow)
-//    , namesSetsManager_(namesSetsManager)
-//    , defaultFieldsCreator_(defaultFieldsCreator)
-//    , sendField(fieldReceiver)
-//{
-//    ui_->setupUi(this);
-//    setFixedSize(size());
-
-//    pf_creationHelper_.setComboBoxes(ui_->comboBox, ui_->comboBox_2);
-//    pf_creationHelper_.setNamesSetsManager(&namesSetsManager_);
-//    pf_creationHelper_.setDefaultFieldsCreator(&defaultFieldsCreator_);
-
-//    pf_creationHelper_.refreshUi();
-//}
-
-//PFCreationWindow::
-//~PFCreationWindow()
-//{
-//    delete ui_;
-//}
-
-//void
-//PFCreationWindow::
-//on_buttonBox_accepted()
-//{
-//    Field* field = new Field;
-
-//    IFieldWidget* fieldWidget = pf_creationHelper_.copyCurrentFieldWidget();
-//    if (!fieldWidget) {
-//        delete field;
-//        delete fieldWidget;
-//        return;
-//    }
-
-//    field->setWidget(fieldWidget);
-//    field->setName(ui_->lineEdit->text());
-
-
-//    if (!sendField(field))
-//        delete field;
-//}
-
-//void PFCreationWindow::on_comboBox_currentTextChanged(const QString &arg1)
-//{
-//    pfCreationHelper_.switchTo(arg1);
-//}
